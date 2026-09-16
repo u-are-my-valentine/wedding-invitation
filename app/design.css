@@ -79,7 +79,6 @@ body { font-family: var(--serif); }
   object-position: 50% 26%;
   transform: scale(1.9);
   transform-origin: 50% 8%;
-  filter: grayscale(1) contrast(.94);
 }
 .stamp-heading { margin-top: 32px; }
 .stamp-heading > p { margin: 0; font: 13px/1.8 var(--latin); letter-spacing: .08em; }
