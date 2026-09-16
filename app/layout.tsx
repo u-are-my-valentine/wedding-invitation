@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: "ko_KR",
       title: weddingConfig.share.title,
       description: weddingConfig.share.description,
-      images: [{ url: weddingConfig.share.image, width: 1200, height: 630 }],
+      images: [{ url: weddingConfig.share.image, width: 1731, height: 908 }],
     },
     twitter: {
       card: "summary_large_image",
