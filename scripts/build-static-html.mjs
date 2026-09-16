@@ -2,6 +2,7 @@ import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const root = process.cwd();
+const imageOrigin = "https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site";
 const sourceHtml = resolve("/tmp/wedding-rendered.html");
 const outputDir = resolve(root, "docs");
 const outputHtml = resolve(outputDir, "index.html");
@@ -16,7 +17,7 @@ html = html
   .replace(/<link rel="stylesheet"[^>]*>/g, "")
   .replace(
     /http:\/\/(?:localhost|127\.0\.0\.1):\d+\/og\.png/g,
-    "https://u-are-my-valentine.github.io/wedding-invitation/og.png",
+    `${imageOrigin}/og.png`,
   )
   .replace(
     /\/_vinext\/image\?url=%2Fimages%2Fwedding%2F(\d+)\.webp&amp;w=\d+&amp;q=\d+/g,
@@ -215,15 +216,11 @@ const script = `
 
 html = html
   .replace("</head>", `${extraStyles}</head>`)
-  .replace("</body>", `${dialogs}${script}</body>`);
+  .replace("</body>", `${dialogs}${script}</body>`)
+  .replaceAll("./images/", `${imageOrigin}/images/`);
 
 await rm(outputDir, { recursive: true, force: true });
-await mkdir(resolve(outputDir, "images"), { recursive: true });
-await cp(resolve(root, "public/images/wedding"), resolve(outputDir, "images/wedding"), {
-  recursive: true,
-});
-await cp(resolve(root, "public/images/location"), resolve(outputDir, "images/location"), { recursive: true });
-await cp(resolve(root, "public/og.png"), resolve(outputDir, "og.png"));
+await mkdir(outputDir, { recursive: true });
 await cp(resolve(root, "public/fonts"), resolve(outputDir, "fonts"), { recursive: true });
 await writeFile(resolve(outputDir, ".nojekyll"), "# Serve this directory as plain static files.\n");
 await writeFile(outputHtml, html);
