@@ -70,7 +70,7 @@ export const weddingConfig: WeddingConfig = {
   share: {
     title: "곽재현 ♥ 정연수, 결혼합니다",
     description: "2027년 2월 14일 일요일 오후 12시 30분 · 드레스가든",
-    image: "/og.png?v=stamp-color-20260916",
+    image: "/og.png?v=color-photo-20260916",
   },
   searchEngineIndex: false,
 };
