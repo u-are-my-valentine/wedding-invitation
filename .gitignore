@@ -1,0 +1,25 @@
+node_modules
+.next
+dist
+.wrangler
+.env
+.env.local
+*.log
+*.tsbuildinfo
+.DS_Store
+20260606정연수님/
+20260606정연수님.zip
+Completed.zip
+deliverables/
+
+# Keep photo and raster image assets local
+*.[pP][nN][gG]
+*.[jJ][pP][gG]
+*.[jJ][pP][eE][gG]
+*.[wW][eE][bB][pP]
+*.[gG][iI][fF]
+*.[aA][vV][iI][fF]
+*.[hH][eE][iI][cC]
+*.[tT][iI][fF]
+*.[tT][iI][fF][fF]
+*.[bB][mM][pP]
