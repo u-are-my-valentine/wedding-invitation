@@ -1,0 +1,111 @@
+@font-face {
+  font-family: "HyeJun";
+  src: url("/fonts/HyeJun.woff2") format("woff2");
+  font-display: swap;
+}
+:root {
+  --paper: #f3eddf;
+  --paper-deep: #e9dfcc;
+  --ink: #39322c;
+  --muted: #776959;
+  --line: #cfc2ac;
+  --white: #fffaf0;
+  --sage-dark: #842e38;
+  --wine: #842e38;
+  --hand: "HyeJun", "Nanum Myeongjo", serif;
+}
+html, body { background-color: #ddd4c4; }
+.invitation-shell { background-color: var(--paper); box-shadow: 0 0 60px #46332220; }
+.cover { min-height: 0; padding: 22px 0 30px; }
+.scrapbook-masthead {
+  display: flex; justify-content: space-between; align-self: stretch;
+  margin: 0 23px; padding: 0 0 10px; border-bottom: 1px solid var(--ink);
+  font: 11px/1.5 var(--latin); letter-spacing: .06em;
+}
+.cover-kicker { margin: 25px 0 5px; font: 22px/1.3 var(--hand); color: var(--wine); transform: rotate(-5deg); }
+.cover-headline { position: relative; z-index: 1; margin: 0 0 22px; font: 46px/.98 var(--calendar); letter-spacing: -.035em; }
+.cover-headline em { color: var(--wine); font-weight: 500; }
+.cover-collage { position: relative; width: calc(100% - 24px); padding: 7px; background: #fffdf7; transform: rotate(-2deg); box-shadow: 2px 6px 12px #46332224; }
+.cover-collage::before, .portrait-interlude::before, #date::before, .venue-map-figure::before {
+  content: ""; position: absolute; z-index: 2; width: 95px; height: 27px; top: -13px; left: 50%;
+  transform: translateX(-50%) rotate(5deg); background: #c6af827a;
+  clip-path: polygon(2% 0, 98% 4%, 100% 18%, 96% 30%, 100% 48%, 96% 63%, 100% 80%, 97% 100%, 0 96%, 3% 77%, 0 55%, 4% 36%, 0 15%);
+}
+.cover-film { position: relative; aspect-ratio: 800 / 586; background: url('/media/scrapbook-cover.png') center / cover; }
+.cover-film video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.film-control { position: absolute; bottom: 9px; left: 9px; display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 72px; min-height: 44px; border: 1px solid #fff8; border-radius: 30px; color: white; background: #30241ec9; font: 13px var(--latin); cursor: pointer; }
+.love-sticker { position: absolute; right: 5px; bottom: -24px; display: grid; place-content: center; width: 71px; height: 71px; border-radius: 50%; background: var(--wine); border: 3px double #eadccc; color: var(--white); font: 18px/1 var(--hand); transform: rotate(12deg); box-shadow: 1px 2px 3px #46332220; }
+.scrapbook-heading { padding: 30px 12px 0; }
+.cover-label { margin: 0 0 12px; font: 11px/1.5 var(--latin); letter-spacing: .12em; }
+.cover .scrapbook-heading h1 { font: 22px/1.5 "Nanum Myeongjo", serif; gap: 13px; letter-spacing: .07em; }
+.cover .scrapbook-heading h1 i { color: var(--wine); font: italic 29px/1 var(--calendar); margin: 0; }
+.scrapbook-date { margin: 14px 0 3px; font: 12px/1.7 var(--latin); }
+.cover-venue { margin: 0; font: 14px/1.8 var(--serif); }
+.turn-page { display: flex; align-items: center; gap: 13px; min-height: 44px; margin-top: 20px; color: var(--muted); font: 13px/1.5 var(--hand); }
+.turn-page span { color: var(--wine); font-size: 20px; }
+.section { padding: 64px 28px; }
+.section-eyebrow { margin: 0 0 13px; font: 11px/1.5 var(--latin); letter-spacing: .07em; color: var(--wine); }
+.section h2 { font: 29px/1.5 var(--hand); color: var(--wine); }
+#invitation {
+  position: relative; margin: 32px 23px 42px; padding: 38px 17px 35px;
+  background: repeating-linear-gradient(transparent 0 33px, #cfc2ac4d 33px 34px), #fffaf0;
+  border-top: 1px solid #fff; box-shadow: 3px 4px 0 #dfd4c2, 4px 7px 12px #46332212;
+}
+#invitation::before { content: "dear you,"; display: block; margin-bottom: 22px; text-align: left; font: italic 27px/1 var(--calendar); color: var(--wine); }
+.invitation-copy { margin-top: 22px; }
+.invitation-copy p { font: 15px/2.27 "Nanum Myeongjo", serif; letter-spacing: -.055em; }
+.family { margin-top: 25px; }
+.family-line { font-size: 12px; }
+.family-line strong { font-size: 15px; }
+.relation { font-size: 12px; }
+.portrait-interlude { position: relative; width: calc(100% - 66px); margin: 30px auto 65px; padding: 9px 9px 0; background: #fffdf8; transform: rotate(3deg); box-shadow: 1px 5px 10px #46332226; }
+.portrait-interlude::before { left: 22%; transform: translateX(-50%) rotate(-20deg); }
+.portrait-interlude figcaption { padding: 13px 0 16px; text-align: center; color: var(--wine); font: 18px/1.3 var(--hand); }
+#date { position: relative; margin: 0 23px; padding: 39px 17px 30px; border: 1px solid #d8c9af; background: #ebe0c94d; box-shadow: 3px 4px 0 #ded1b7; }
+#date > .section-eyebrow, #date > h2 { display: block; }
+#date::before { left: 72%; transform: translateX(-50%) rotate(-8deg); }
+.calendar { margin-top: 25px; }
+.calendar-month { font-style: italic; margin-bottom: 16px; }
+.calendar-dates > span { height: 43px; }
+.calendar-grid .wedding-day { color: var(--wine); font-weight: 700; }
+.calendar-weekdays { border-bottom: 1px dashed var(--line); padding-bottom: 8px; }
+.date-display { color: var(--wine); }
+.dday { font-size: 13px; }
+.dday strong { color: var(--wine); font-weight: 700; }
+#gallery { padding: 69px 28px 45px; }
+#gallery h2 { font: 30px/1.5 var(--hand); color: var(--wine); letter-spacing: 0; }
+.scrapbook-note { margin: 7px 0 24px; font: 17px/1.5 var(--hand); color: var(--muted); }
+.gallery-strip { padding: 0; background: #fffaf1; border: 9px solid #fffaf1; border-bottom-width: 30px; box-shadow: 2px 4px 11px #46332220; }
+.gallery-slide { border-radius: 0; }
+.gallery-slide img { object-fit: cover; }
+.gallery-navigation { margin-top: 10px; }
+.gallery-step { color: var(--wine); }
+#location { margin-top: 20px; padding: 40px 28px; background: #e5d8bf55; border-block: 1px dashed #b9a98b; }
+.venue-card { margin-top: 20px; }
+.venue-map-figure { position: relative; padding: 8px; margin: 31px 0 18px; background: #fffdf6; transform: rotate(-2deg); box-shadow: 2px 4px 8px #46332217; }
+.venue-map-figure::before { width: 77px; }
+.map-view-button { margin: 26px 40px 0; border: 1px solid var(--wine); background: var(--wine); color: var(--white); }
+.transport-row { padding: 18px 0; }
+#accounts { margin: 50px 23px 40px; padding: 30px 20px; background: #fffaf0; border: 1px solid #dfd3be; box-shadow: 3px 3px 0 #e0d5c2; }
+#accounts h2 { font-size: 27px; }
+.account-tabs button[aria-pressed="true"] { color: var(--wine); border-bottom-color: var(--wine); }
+.account-row .text-button { color: var(--wine); }
+.closing { width: calc(100% - 58px); border: 8px solid #fffaf0; transform: rotate(-3deg); box-shadow: 2px 4px 9px #46332226; }
+footer { padding-top: 40px; }
+.footer-love { margin: 0 0 20px; font: 37px/1 var(--calendar); color: var(--wine); }
+.footer-note { margin-bottom: 25px; font: 16px/1.6 var(--hand); }
+footer button { padding: 12px 27px; color: var(--wine); border: 1px solid var(--wine); background: transparent; border-radius: 0; }
+@media (max-width: 370px) {
+  .cover-headline { font-size: 39px; }
+  .scrapbook-masthead { margin-inline: 18px; font-size: 10px; }
+  #invitation { margin-inline: 17px; padding-inline: 12px; }
+  .invitation-copy p { font-size: 14px; }
+  .family-line { font-size: 12px; }
+  .family-line strong { font-size: 14px; }
+  #date { margin-inline: 18px; padding-inline: 12px; }
+  .scrapbook-date { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { animation: none; }
+}

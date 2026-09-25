@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import CoverFilm from "./CoverFilm";
 import {
   type ReactNode,
   type TouchEvent,
@@ -274,21 +275,20 @@ export default function WeddingInvitation() {
     <>
       <main className="invitation-shell">
         <section className="cover" aria-labelledby="cover-title">
-          <div className="stamp-frame">
-            <div className="stamp-paper">
-              <div className="cover-photo">
-                <Image alt={config.gallery[0].alt} fill priority unoptimized sizes="140px" src={config.gallery[0].src} />
-              </div>
-            </div>
-          </div>
-          <div className="stamp-heading">
-            <p>THE WEDDING OF</p>
+          <div className="scrapbook-masthead"><span>OUR LOVE ARCHIVE</span><span>VOL. 01 / {weddingYear}</span></div>
+          <p className="cover-kicker">a collection of us</p>
+          <p className="cover-headline">Every little thing,<br /><em>led me to you.</em></p>
+          <div className="cover-collage"><CoverFilm /><span className="love-sticker" aria-hidden="true">made<br />with love</span></div>
+          <div className="scrapbook-heading">
+            <p className="cover-label">WE’RE GETTING MARRIED!</p>
             <h1 id="cover-title">{config.couple.bride.name}<i>&amp;</i>{config.couple.groom.name}</h1>
-            <p className="stamp-date">{monthEnglish.toUpperCase()} {weddingDay}, {weddingYear}<br />{coverTime}</p>
+            <p className="scrapbook-date">{monthEnglish.toUpperCase()} {weddingDay}, {weddingYear} · {coverTime}</p>
+            <p className="cover-venue">{config.wedding.venueName}</p>
           </div>
+          <a className="turn-page" href="#invitation">우리의 이야기를 펼쳐 보세요 <span aria-hidden="true">↓</span></a>
         </section>
 
-        <Section id="invitation" title={config.invitation.title}>
+        <Section id="invitation" eyebrow="01 / DEAR OUR FAVORITE PEOPLE" title={config.invitation.title}>
           <div className="invitation-copy">
             {config.invitation.message.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -303,9 +303,10 @@ export default function WeddingInvitation() {
 
         <figure className="portrait-interlude">
           <Image alt={config.gallery[11].alt} width={600} height={400} unoptimized sizes="(max-width: 480px) 88vw, 424px" src={config.gallery[11].src} />
+          <figcaption>you, me &amp; all the little moments.</figcaption>
         </figure>
 
-        <Section id="date" eyebrow="THE DAY" title="예식 일시">
+        <Section id="date" eyebrow="02 / SAVE OUR DATE" title="함께할 우리의 날">
           <div className="calendar" aria-label={`${weddingYear}년 ${weddingMonth}월 달력`}>
             <p className="calendar-month">{monthEnglish}, {weddingYear}</p>
             <div className="calendar-grid calendar-weekdays">
@@ -337,7 +338,8 @@ export default function WeddingInvitation() {
           </p>
         </Section>
 
-        <Section id="gallery" title="GALLERY">
+        <Section id="gallery" eyebrow="03 / COLLECTED MEMORIES" title="조각조각, 우리">
+          <p className="scrapbook-note">오래도록 꺼내 보고 싶은 순간들</p>
           <div className="gallery-strip" ref={galleryStripRef} role="region" aria-label="웨딩 사진 목록" tabIndex={0} onScroll={(event) => setGallerySlide(Math.max(0, Math.min(config.gallery.length - 1, Math.round(event.currentTarget.scrollLeft / event.currentTarget.clientWidth))))}>
             {config.gallery.map((photo, index) => (
               <button className="gallery-item gallery-slide" key={photo.src} aria-label={`웨딩 사진 ${index + 1} / ${config.gallery.length} 크게 보기`} data-gallery-index={index} onClick={() => setGalleryIndex(index)}>
@@ -352,7 +354,7 @@ export default function WeddingInvitation() {
           </div>
         </Section>
 
-        <Section id="location" title="오시는 길">
+        <Section id="location" eyebrow="04 / MEET US HERE" title="오시는 길">
           <div className="venue-card">
             <p className="venue-name">{config.wedding.venueName}</p>
             {config.wedding.hallName && <p>{config.wedding.hallName}</p>}
@@ -382,7 +384,7 @@ export default function WeddingInvitation() {
 
 
         {(config.accounts.groom.length > 0 || config.accounts.bride.length > 0) && (
-          <Section id="accounts" title="마음 전하실 곳">
+          <Section id="accounts" eyebrow="05 / WITH LOVE" title="마음 전하실 곳">
             <div className="account-tabs" aria-label="계좌 구분">
               <button aria-pressed={accountSide === "groom"} onClick={() => setAccountSide("groom")}>신랑측</button>
               <button aria-pressed={accountSide === "bride"} onClick={() => setAccountSide("bride")}>신부측</button>
@@ -409,6 +411,8 @@ export default function WeddingInvitation() {
         </section>
 
         <footer>
+          <p className="footer-love">Our next chapter<br /><em>starts with you.</em></p>
+          <p className="footer-note">우리의 시작을 함께해 주셔서 감사합니다.</p>
           <button onClick={shareInvitation}>청첩장 공유하기</button>
           <span>{config.couple.groom.name} &amp; {config.couple.bride.name}의 결혼식</span>
         </footer>

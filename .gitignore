@@ -23,3 +23,11 @@ deliverables/
 *.[tT][iI][fF]
 *.[tT][iI][fF][fF]
 *.[bB][mM][pP]
+
+# Keep video assets local, too
+*.[mM][pP]4
+*.[mM][oO][vV]
+*.[mM]4[vV]
+*.[wW][eE][bB][mM]
+*.[aA][vV][iI]
+*.[mM][kK][vV]

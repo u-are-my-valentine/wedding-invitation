@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { weddingConfig } from "@/config/wedding";
 import "./globals.css";
 import "./design.css";
+import "./scrapbook.css";
 
 export const viewport: Viewport = {
   width: "device-width",

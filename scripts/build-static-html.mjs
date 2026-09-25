@@ -6,7 +6,7 @@ const imageOrigin = "https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site"
 const sourceHtml = resolve("/tmp/wedding-rendered.html");
 const outputDir = resolve(root, "docs");
 const outputHtml = resolve(outputDir, "index.html");
-const css = (await readFile(resolve(root, "app/globals.css"), "utf8")) + "\n" + (await readFile(resolve(root, "app/design.css"), "utf8")).replaceAll('/fonts/', './fonts/').replaceAll('/images/', './images/');
+const css = (await Promise.all(["globals", "design", "scrapbook"].map(name => readFile(resolve(root, `app/${name}.css`), "utf8")))).join("\n").replaceAll('/fonts/', './fonts/').replaceAll('/images/', './images/').replaceAll('/media/', './media/');
 let html = await readFile(sourceHtml, "utf8");
 
 html = html.slice(0, html.indexOf("</html>") + "</html>".length);
@@ -24,6 +24,8 @@ html = html
     "./images/wedding/$1.webp",
   )
   .replaceAll('src="/images/', 'src="./images/')
+  .replaceAll('src="/media/', 'src="./media/')
+  .replaceAll('poster="/media/', 'poster="./media/')
   .replace(/srcset="[^"]*"/gi, (attribute) => attribute.replace(/([" ,])\/images\//g, "$1./images/"))
   .replace("</head>", `<style>${css}</style></head>`);
 
@@ -53,6 +55,27 @@ const dialogs = `
 const script = `
 <script>
 (() => {
+  const film = document.querySelector(".cover-film video");
+  const filmControl = document.querySelector(".film-control");
+  if (film && filmControl) {
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    film.muted = true;
+    const updateFilmControl = () => {
+      const playing = !film.paused && !film.ended;
+      filmControl.setAttribute("aria-label", playing ? "표지 영상 일시정지" : "표지 영상 재생");
+      filmControl.innerHTML = playing ? '<span aria-hidden="true">Ⅱ</span> pause' : '<span aria-hidden="true">▷</span> play';
+    };
+    ["play", "pause", "ended"].forEach(event => film.addEventListener(event, updateFilmControl));
+    filmControl.addEventListener("click", () => {
+      if (film.paused) {
+        if (film.ended) film.currentTime = 0;
+        film.play().catch(() => {});
+      } else film.pause();
+    });
+    motion.addEventListener("change", () => { if (motion.matches) film.pause(); });
+    updateFilmControl();
+    if (!motion.matches) film.play().catch(() => {});
+  }
   const gallery = ${JSON.stringify([
     "0100","0177","0316","0392","0463","0644","0807","0922",
     "1133","1186","1330","1420","1439","1471","1499",
@@ -222,6 +245,7 @@ html = html
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
 await cp(resolve(root, "public/fonts"), resolve(outputDir, "fonts"), { recursive: true });
+await cp(resolve(root, "public/media"), resolve(outputDir, "media"), { recursive: true });
 await writeFile(resolve(outputDir, ".nojekyll"), "# Serve this directory as plain static files.\n");
 await writeFile(outputHtml, html);
 
