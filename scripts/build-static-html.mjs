@@ -240,12 +240,12 @@ const script = `
 html = html
   .replace("</head>", `${extraStyles}</head>`)
   .replace("</body>", `${dialogs}${script}</body>`)
-  .replaceAll("./images/", `${imageOrigin}/images/`);
+  .replaceAll("./images/", `${imageOrigin}/images/`)
+  .replaceAll("./media/", `${imageOrigin}/media/`);
 
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
 await cp(resolve(root, "public/fonts"), resolve(outputDir, "fonts"), { recursive: true });
-await cp(resolve(root, "public/media"), resolve(outputDir, "media"), { recursive: true });
 await writeFile(resolve(outputDir, ".nojekyll"), "# Serve this directory as plain static files.\n");
 await writeFile(outputHtml, html);
 
