@@ -23,3 +23,6 @@ deliverables/
 *.[tT][iI][fF]
 *.[tT][iI][fF][fF]
 *.[bB][mM][pP]
+
+# Keep cover media out of Git
+*.[mM][pP]4
