@@ -160,15 +160,19 @@ const script = `
     }
   });
 
-  document.querySelectorAll(".account-tabs button").forEach((button, index) => {
+  document.querySelectorAll(".account-trigger").forEach((button) => {
     button.addEventListener("click", () => {
-      document.querySelectorAll(".account-tabs button").forEach((tab, i) => tab.setAttribute("aria-pressed", String(i === index)));
-      document.querySelectorAll("[data-account-side]").forEach((panel, i) => { panel.hidden = i !== index; });
+      const wasOpen = button.getAttribute("aria-expanded") === "true";
+      document.querySelectorAll(".account-trigger").forEach((trigger) => {
+        const open = trigger === button && !wasOpen;
+        trigger.setAttribute("aria-expanded", String(open));
+        document.getElementById(trigger.getAttribute("aria-controls")).hidden = !open;
+      });
     });
   });
   document.querySelectorAll(".account-row").forEach((row) => {
     row.querySelector("button").addEventListener("click", () => {
-      copyText(row.querySelector("strong").textContent.split(" ").slice(1).join(" "), "계좌번호가 복사되었습니다.");
+      copyText(row.querySelector("strong").textContent.trim(), "계좌번호가 복사되었습니다.");
     });
   });
 
