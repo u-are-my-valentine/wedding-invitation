@@ -308,10 +308,6 @@ export default function WeddingInvitation() {
 
         </Section>
 
-        <figure className="portrait-interlude">
-          <Image alt={config.gallery[11].alt} width={600} height={400} unoptimized sizes="(max-width: 480px) 88vw, 424px" src={config.gallery[11].src} />
-        </figure>
-
         <Section id="date" eyebrow="THE DAY" title="예식 일시">
           <div className="calendar" aria-label={`${weddingYear}년 ${weddingMonth}월 달력`}>
             <p className="calendar-year">{weddingYear}</p>

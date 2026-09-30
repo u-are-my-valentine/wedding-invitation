@@ -25,7 +25,7 @@
   --muted: #504f4a;
   --sage: #5d6159;
   --sage-dark: #3d403a;
-  --line: #d7d6d0;
+  --line: #a8a69e;
   --white: #fdfcf9;
   --latin: "Cutive Mono", "Courier New", monospace;
   --calendar: "Cormorant Garamond", "Times New Roman", serif;
@@ -79,8 +79,6 @@ body { font-family: var(--serif); }
 .family-line { justify-content: center; flex-wrap: wrap; font-size: 14px; gap: 5px; }
 .family-line strong { font-size: 16px; font-weight: 400; }
 .relation { font-size: 14px; }
-.portrait-interlude { width: calc(100% - 48px); margin: 0 auto 76px; }
-.portrait-interlude img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
 
 #date {
   margin-inline: 24px;
@@ -168,7 +166,7 @@ body { font-family: var(--serif); }
 .account-trigger[aria-expanded="true"] .account-toggle-icon::after { transform: rotate(0); }
 .account-group { border: 0; background: transparent; text-align: left; }
 .account-list { padding: 0 12px 8px; border-top: 0; }
-.account-row { flex-direction: row; gap: 12px; padding: 20px 0; border-bottom: 1px solid #d7d6d080; }
+.account-row { flex-direction: row; gap: 12px; padding: 20px 0; border-bottom: 1px solid var(--line); }
 .account-row:last-child { border-bottom: 0; }
 .account-info { min-width: 0; gap: 3px; }
 .account-row small { margin-bottom: 5px; font: 13px/1.6 var(--serif); color: var(--muted); }
@@ -187,5 +185,5 @@ footer > span { display: none; }
   .wedding-day::after { width: 40px; height: 40px; }
   .family-line { font-size: 14px; gap: 3px; }
   .family-line strong { font-size: 16px; }
-  .portrait-interlude, .closing { width: calc(100% - 40px); }
+  .closing { width: calc(100% - 40px); }
 }
