@@ -364,6 +364,14 @@ export default function WeddingInvitation() {
             {config.wedding.hallName && <p>{config.wedding.hallName}</p>}
             <address>{config.wedding.address}</address>
           </div>
+          <svg width="0" height="0" aria-hidden="true" focusable="false" style={{ position: "absolute" }}>
+            <defs>
+              <filter id="venue-map-ink" colorInterpolationFilters="sRGB">
+                <feColorMatrix type="matrix" values="0.7 0 0 0 0  0 0.7 0 0 0  0 0 0.7 0 0  -0.85 -2.86 -0.29 0 3.4" />
+                <feComposite in2="SourceGraphic" operator="in" />
+              </filter>
+            </defs>
+          </svg>
           <figure className="venue-map-figure">
             <Image
               className="venue-map"
