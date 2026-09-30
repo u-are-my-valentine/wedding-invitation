@@ -81,31 +81,43 @@ body { font-family: var(--serif); }
 .relation { font-size: 14px; }
 
 #date {
-  margin-inline: 24px;
+  margin-inline: 0;
   padding: 40px 16px 32px;
   border: 0;
 }
 #date > .section-eyebrow, #date > h2 { display: none; }
-.calendar { margin: 0 auto 28px; padding: 0; background: transparent; border: 0; }
-.calendar-year { margin: 0 0 8px; color: var(--muted); font: 12px/1.5 var(--latin); letter-spacing: .2em; }
-.calendar-month { margin: 0 0 30px; font: 36px/1.2 var(--calendar); letter-spacing: .02em; }
-.calendar-grid { gap: 8px 0; align-items: center; justify-items: center; }
-.calendar-grid span { width: 100%; height: 40px; aspect-ratio: auto; font: 22px/1.5 var(--calendar); font-variant-numeric: lining-nums tabular-nums; }
-.calendar-weekdays { margin-bottom: 18px; padding-bottom: 0; border: 0; }
-.calendar-weekdays span { font: 11px/1.5 var(--latin); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
-.calendar-weekdays .sunday { color: var(--muted); }
-.calendar-dates .sunday { color: var(--ink); }
-.calendar-dates > span { height: 56px; }
-.calendar-grid .seollal-day { position: relative; color: #696053; background: transparent; }
-.seollal-day::after { content: ""; position: absolute; bottom: 7px; left: 50%; width: 18px; height: 1px; background: #82796c80; transform: translateX(-50%); }
-.holiday-label { position: absolute; top: 2px; left: 50%; z-index: 1; transform: translateX(-50%); color: #696053; font: 10.5px/1.2 "Gowun Batang", serif; white-space: nowrap; }
-.calendar-grid .wedding-day { position: relative; color: var(--ink); background: transparent; border-radius: 0; }
+.calendar {
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 360 / 440;
+  margin: 0 auto 28px;
+  padding: 0;
+  border: 0;
+  color: #faf3e8;
+  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20440%22%3E%3Cpath%20d%3D%22M180%2067C162%209%20115%202%2077%2013C24%2027%209%2072%208%20134C5%20252%2071%20348%20180%20431C284%20339%20354%20244%20352%20128C351%2066%20335%2019%20286%2010C237%201%20193%2021%20180%2067Z%22%20fill%3D%22%23914d4b%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+}
+.calendar-year { position: absolute; top: 16%; width: 100%; margin: 0; color: #f0ded2; font: 3.3cqw/1.5 var(--latin); letter-spacing: .18em; }
+.calendar-month { position: absolute; top: 21%; width: 100%; margin: 0; font: italic 8cqw/1.2 var(--calendar); letter-spacing: .01em; }
+.calendar-grid { position: absolute; left: 17%; right: 17%; gap: 0; align-items: center; justify-items: center; }
+.calendar-grid span { width: 100%; height: 9cqw; aspect-ratio: auto; font: 5cqw/1 var(--calendar); font-variant-numeric: lining-nums tabular-nums; }
+.calendar-weekdays { top: 30%; margin: 0; padding: 0; border: 0; }
+.calendar-weekdays span { height: 6cqw; font: 2.5cqw/1 var(--latin); color: #f0ded2; letter-spacing: 0; text-transform: uppercase; }
+.calendar-weekdays .sunday { color: #f0ded2; }
+.calendar-dates { top: 36%; }
+.calendar-dates .sunday { color: inherit; }
+.calendar-grid .seollal-day { position: relative; color: inherit; background: transparent; }
+.seollal-day::after { content: ""; position: absolute; bottom: 1cqw; left: 50%; width: 3.5cqw; height: 1px; background: #f0ded28c; transform: translateX(-50%); }
+.holiday-label { position: absolute; top: -.6cqw; left: 50%; z-index: 1; transform: translateX(-50%); color: #f0ded2; font: 2.4cqw/1 "Gowun Batang", serif; white-space: nowrap; }
+.calendar-grid .wedding-day { position: relative; isolation: isolate; color: #743d3c; background: transparent; border-radius: 0; font-weight: 600; }
 .wedding-day::after {
   content: "";
   position: absolute;
-  width: 44px;
-  height: 44px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 43C20 38 5 29 4 18C3 8 14 3 23 13C29 2 43 6 44 16C45 27 34 37 24 43' fill='none' stroke='%23a65350' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  z-index: -1;
+  width: 8cqw;
+  height: 8cqw;
+  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Cpath%20d%3D%22M24%2044C18%2038%203%2029%203%2016C3%204%2017%201%2024%2011C31%201%2045%204%2045%2016C45%2029%2030%2039%2024%2044Z%22%20fill%3D%22%23faf3e8%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
   transform: rotate(-7deg);
   pointer-events: none;
 }
@@ -183,8 +195,7 @@ footer > span { display: none; }
 .toast { border-radius: 2px; font: 14px/1.8 var(--serif); bottom: calc(28px + env(safe-area-inset-bottom)); }
 @media (max-width: 370px) {
   .section, #gallery { padding-inline: 24px; }
-  #date { margin-inline: 20px; padding-inline: 8px; }
-  .wedding-day::after { width: 40px; height: 40px; }
+  #date { margin-inline: 0; padding-inline: 12px; }
   .family-line { font-size: 14px; gap: 3px; }
   .family-line strong { font-size: 16px; }
   .closing { width: calc(100% - 40px); }
