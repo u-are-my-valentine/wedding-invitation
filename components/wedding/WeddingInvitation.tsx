@@ -380,7 +380,7 @@ export default function WeddingInvitation() {
               unoptimized
             />
           </figure>
-          <a className="map-view-button" href={config.wedding.mapUrl} rel="noreferrer" target="_blank">지도 보기</a>
+          <a className="map-view-button" href={config.wedding.mapUrl} rel="noreferrer" target="_blank">지도에서 위치 보기</a>
           <div className="transport-list">
             {config.transport.map((item) => (
               <div className="transport-row" key={item.label}>
@@ -404,8 +404,7 @@ export default function WeddingInvitation() {
                     aria-controls={`${side}-accounts`}
                     onClick={() => setAccountSide((current) => current === side ? null : side)}
                   >
-                    {side === "groom" ? "신랑측" : "신부측"}
-                    <span className="account-toggle-icon" aria-hidden="true" />
+                    {side === "groom" ? "신랑측 계좌" : "신부측 계좌"}
                   </button>
                   <div id={`${side}-accounts`} data-account-side={side} hidden={accountSide !== side}>
                     <AccountGroup accounts={config.accounts[side]} copy={copy} title={`${side === "groom" ? "신랑측" : "신부측"} 계좌번호`} />

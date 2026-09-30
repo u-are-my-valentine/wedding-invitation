@@ -169,9 +169,9 @@ body { font-family: var(--serif); }
 .venue-map-figure { margin: 24px -12px 12px; }
 .venue-map { display: block; width: 100%; height: auto; filter: url("#venue-map-ink"); }
 .venue-card address { margin-top: 8px; color: var(--muted); font: 14px/1.8 var(--serif); }
-.map-view-button { display: flex; justify-content: center; gap: 14px; align-items: center; width: fit-content; min-height: 48px; margin: 28px auto 0; padding: 10px 6px; color: #684643; font: 14px/1.6 var(--serif); border: 0; border-radius: 0; background: transparent; border-bottom: 1px solid #845c5960; }
+.map-view-button { display: flex; justify-content: center; gap: 14px; align-items: center; width: fit-content; min-height: 48px; margin: 16px 0 0 auto; padding: 10px 0 10px 12px; color: #684643; font: 14px/1.6 var(--serif); border: 0; border-radius: 0; background: transparent; }
 .map-view-button::after { content: "↗"; color: #785451; font: 18px/1 var(--latin); }
-.map-view-button:hover { color: var(--ink); border-bottom-color: currentColor; }
+.map-view-button:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
 .map-view-button:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
 .transport-list { margin-top: 36px; text-align: left; }
 .transport-row { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; padding: 14px 0; border: 0; }
@@ -181,15 +181,15 @@ body { font-family: var(--serif); }
 
 #accounts { padding-top: 32px; padding-bottom: 72px; text-align: center; }
 #accounts h2 { font-size: 21px; }
-.account-disclosures { display: grid; gap: 8px; margin-top: 24px; border: 0; text-align: left; }
-.account-disclosure { border: 0; background: transparent; }
+.account-disclosures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; margin-top: 24px; border: 0; text-align: left; }
+.account-disclosure { display: contents; }
 
-.account-disclosure > [data-account-side] { margin: 4px 0 20px; padding: 0 4px; background: transparent; }
-.account-trigger { display: flex; align-items: center; justify-content: center; gap: 18px; width: 100%; min-height: 56px; padding: 14px 20px; border: 0; background: transparent; color: #785451; font: 15px/1.8 var(--serif); text-align: center; cursor: pointer; transition: color 180ms ease; }
+.account-disclosure > [data-account-side] { grid-column: 1 / -1; grid-row: 2; margin: 16px 0 0; padding: 0 4px; background: transparent; }
+.account-trigger { position: relative; grid-row: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 52px; padding: 14px 4px; border: 0; background: transparent; color: #785451; font: 15px/1.8 var(--serif); text-align: center; cursor: pointer; transition: color 180ms ease; }
 .account-trigger:hover, .account-trigger[aria-expanded="true"] { color: var(--ink); }
 .account-trigger:focus-visible, .account-row .text-button:focus-visible { outline: 1px solid var(--sage-dark); outline-offset: -3px; }
-.account-toggle-icon { width: 7px; height: 7px; margin-top: -4px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg); transition: transform 180ms ease; }
-.account-trigger[aria-expanded="true"] .account-toggle-icon { margin-top: 4px; transform: rotate(225deg); }
+.account-trigger::after { content: ""; position: absolute; bottom: 3px; left: calc(50% - 12px); width: 24px; height: 1px; background: #785451; opacity: 0; }
+.account-trigger[aria-expanded="true"]::after { opacity: 1; }
 .account-group { border: 0; background: transparent; text-align: left; }
 .account-list { padding: 0 12px 8px; border-top: 0; }
 .account-row { flex-direction: row; gap: 12px; padding: 20px 0; border: 0; }
