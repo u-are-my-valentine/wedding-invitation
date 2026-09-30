@@ -166,12 +166,14 @@ function AccountGroup({
       <div className="account-list">
         {accounts.map((account) => (
           <div className="account-row" key={`${account.label}-${account.holder}`}>
-            <span>
+            <span className="account-info">
               <small>{account.label} · {account.holder}</small>
-              <strong>{account.bank} {account.number}</strong>
+              <span className="account-bank">{account.bank}</span>
+              <strong>{account.number}</strong>
             </span>
             <button
               className="text-button"
+              aria-label={`${account.holder} ${account.bank} 계좌번호 복사`}
               onClick={() => copy(account.number, "계좌번호가 복사되었습니다.")}
             >
               복사
@@ -187,7 +189,7 @@ export default function WeddingInvitation() {
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
   const [gallerySlide, setGallerySlide] = useState(0);
   const galleryStripRef = useRef<HTMLDivElement>(null);
-  const [accountSide, setAccountSide] = useState<"groom" | "bride">("groom");
+  const [accountSide, setAccountSide] = useState<"groom" | "bride" | null>(null);
   const [toast, setToast] = useState("");
   const [now, setNow] = useState<number | null>(null);
   const countdown = now === null ? null : getCountdown(weddingDate, new Date(now));
@@ -274,13 +276,16 @@ export default function WeddingInvitation() {
     <>
       <main className="invitation-shell">
         <section className="cover" aria-labelledby="cover-title">
-          <div className="stamp-frame">
-            <div className="stamp-paper">
-              <div className="cover-photo">
-                <Image alt={config.gallery[0].alt} fill priority unoptimized sizes="140px" src={config.gallery[0].src} />
-              </div>
-            </div>
-          </div>
+          <Image
+            className="cover-stamp-2-photo"
+            alt="레이스 테두리 안의 곽재현과 정연수 웨딩 사진"
+            src="/images/wedding/cover-stamp-2-transparent.png"
+            width={1254}
+            height={1254}
+            sizes="290px"
+            priority
+            unoptimized
+          />
           <div className="stamp-heading">
             <p>THE WEDDING OF</p>
             <h1 id="cover-title">{config.couple.bride.name}<i>&amp;</i>{config.couple.groom.name}</h1>
@@ -307,7 +312,8 @@ export default function WeddingInvitation() {
 
         <Section id="date" eyebrow="THE DAY" title="예식 일시">
           <div className="calendar" aria-label={`${weddingYear}년 ${weddingMonth}월 달력`}>
-            <p className="calendar-month">{monthEnglish}, {weddingYear}</p>
+            <p className="calendar-year">{weddingYear}</p>
+            <p className="calendar-month">{monthEnglish}</p>
             <div className="calendar-grid calendar-weekdays">
               {weekdayLabels.map((day, index) => (
                 <span className={index === 0 ? "sunday" : ""} key={day}>{day}</span>
@@ -383,17 +389,23 @@ export default function WeddingInvitation() {
 
         {(config.accounts.groom.length > 0 || config.accounts.bride.length > 0) && (
           <Section id="accounts" title="마음 전하실 곳">
-            <div className="account-tabs" aria-label="계좌 구분">
-              <button aria-pressed={accountSide === "groom"} onClick={() => setAccountSide("groom")}>신랑측</button>
-              <button aria-pressed={accountSide === "bride"} onClick={() => setAccountSide("bride")}>신부측</button>
-            </div>
-            <div className="accounts" data-side={accountSide}>
-              <div data-account-side="groom" hidden={accountSide !== "groom"}>
-                <AccountGroup accounts={config.accounts.groom} copy={copy} title="신랑측 계좌번호" />
-              </div>
-              <div data-account-side="bride" hidden={accountSide !== "bride"}>
-                <AccountGroup accounts={config.accounts.bride} copy={copy} title="신부측 계좌번호" />
-              </div>
+            <div className="account-disclosures">
+              {(["groom", "bride"] as const).map((side) => config.accounts[side].length > 0 && (
+                <div className="account-disclosure" key={side}>
+                  <button
+                    className="account-trigger"
+                    aria-expanded={accountSide === side}
+                    aria-controls={`${side}-accounts`}
+                    onClick={() => setAccountSide((current) => current === side ? null : side)}
+                  >
+                    {side === "groom" ? "신랑측" : "신부측"}
+                    <span className="account-toggle-icon" aria-hidden="true" />
+                  </button>
+                  <div id={`${side}-accounts`} data-account-side={side} hidden={accountSide !== side}>
+                    <AccountGroup accounts={config.accounts[side]} copy={copy} title={`${side === "groom" ? "신랑측" : "신부측"} 계좌번호`} />
+                  </div>
+                </div>
+              ))}
             </div>
           </Section>
         )}
