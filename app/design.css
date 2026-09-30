@@ -85,14 +85,6 @@ body { font-family: var(--serif); }
   padding: 40px 16px 32px;
   border: 0;
 }
-#date::before, #accounts::before {
-  content: "";
-  display: block;
-  width: 72px;
-  height: 28px;
-  margin: 0 auto 32px;
-  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2028%22%20fill%3D%22none%22%20stroke%3D%22%238b877d%22%20stroke-width%3D%221.1%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2836%2014%29%22%3E%3Cellipse%20cy%3D%22-5%22%20rx%3D%222.7%22%20ry%3D%224.2%22%2F%3E%3Cellipse%20cy%3D%22-5%22%20rx%3D%222.7%22%20ry%3D%224.2%22%20transform%3D%22rotate%2860%29%22%2F%3E%3Cellipse%20cy%3D%22-5%22%20rx%3D%222.7%22%20ry%3D%224.2%22%20transform%3D%22rotate%28120%29%22%2F%3E%3Cellipse%20cy%3D%22-5%22%20rx%3D%222.7%22%20ry%3D%224.2%22%20transform%3D%22rotate%28180%29%22%2F%3E%3Cellipse%20cy%3D%22-5%22%20rx%3D%222.7%22%20ry%3D%224.2%22%20transform%3D%22rotate%28240%29%22%2F%3E%3Cellipse%20cy%3D%22-5%22%20rx%3D%222.7%22%20ry%3D%224.2%22%20transform%3D%22rotate%28300%29%22%2F%3E%3Ccircle%20r%3D%222%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M27%2015C19%2021%2011%2021%205%2016M18%2019C17%2012%2012%2010%208%2011C9%2016%2012%2019%2018%2019M45%2015C53%2021%2061%2021%2067%2016M54%2019C55%2012%2060%2010%2064%2011C63%2016%2060%2019%2054%2019%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
-}
 #date > .section-eyebrow, #date > h2 { display: none; }
 .calendar { margin: 0 auto 28px; padding: 0; background: transparent; border: 0; }
 .calendar-year { margin: 0 0 8px; color: var(--muted); font: 12px/1.5 var(--latin); letter-spacing: .2em; }
