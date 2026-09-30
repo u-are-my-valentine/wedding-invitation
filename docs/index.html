@@ -990,34 +990,47 @@ body { font-family: var(--serif); }
 .calendar {
   position: relative;
   container-type: inline-size;
-  width: 100%;
-  max-width: 360px;
+  isolation: isolate;
+  width: 94%;
+  max-width: 330px;
   aspect-ratio: 360 / 440;
   margin: 0 auto 28px;
   padding: 0;
   border: 0;
   color: #faf3e8;
-  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20440%22%3E%3Cpath%20d%3D%22M180%2067C162%209%20115%202%2077%2013C24%2027%209%2072%208%20134C5%20252%2071%20348%20180%20431C284%20339%20354%20244%20352%20128C351%2066%20335%2019%20286%2010C237%201%20193%2021%20180%2067Z%22%20fill%3D%22%23914d4b%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+  background: transparent;
 }
-.calendar-year { position: absolute; top: 16%; width: 100%; margin: 0; color: #f0ded2; font: 3.3cqw/1.5 var(--latin); letter-spacing: .18em; }
-.calendar-month { position: absolute; top: 21%; width: 100%; margin: 0; font: italic 8cqw/1.2 var(--calendar); letter-spacing: .01em; }
+.calendar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: #845c59 url("https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/location/invitation-paper.png") repeat;
+  background-size: 132px 132px;
+  background-blend-mode: multiply;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20440%22%3E%3Cpath%20d%3D%22M180%2067C162%209%20115%202%2077%2013C24%2027%209%2072%208%20134C5%20252%2071%20348%20180%20431C284%20339%20354%20244%20352%20128C351%2066%20335%2019%20286%2010C237%201%20193%2021%20180%2067Z%22%20fill%3D%22%23914d4b%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20440%22%3E%3Cpath%20d%3D%22M180%2067C162%209%20115%202%2077%2013C24%2027%209%2072%208%20134C5%20252%2071%20348%20180%20431C284%20339%20354%20244%20352%20128C351%2066%20335%2019%20286%2010C237%201%20193%2021%20180%2067Z%22%20fill%3D%22%23914d4b%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+}
+.calendar-year { position: absolute; top: 16%; width: 100%; margin: 0; color: #f0ded2; font: clamp(10px, 3.6cqw, 12px)/1.5 var(--latin); letter-spacing: .18em; }
+.calendar-month { position: absolute; top: 21%; width: 100%; margin: 0; font: italic 8.7cqw/1.2 var(--calendar); letter-spacing: .01em; }
 .calendar-grid { position: absolute; left: 17%; right: 17%; gap: 0; align-items: center; justify-items: center; }
-.calendar-grid span { width: 100%; height: 9cqw; aspect-ratio: auto; font: 5cqw/1 var(--calendar); font-variant-numeric: lining-nums tabular-nums; }
+.calendar-grid span { width: 100%; height: 9cqw; aspect-ratio: auto; font: clamp(15px, 5.45cqw, 18px)/1 var(--calendar); font-variant-numeric: lining-nums tabular-nums; }
 .calendar-weekdays { top: 30%; margin: 0; padding: 0; border: 0; }
-.calendar-weekdays span { height: 6cqw; font: 2.5cqw/1 var(--latin); color: #f0ded2; letter-spacing: 0; text-transform: uppercase; }
+.calendar-weekdays span { height: 6cqw; font: 9px/1 var(--latin); color: #f0ded2; letter-spacing: 0; text-transform: uppercase; }
 .calendar-weekdays .sunday { color: #f0ded2; }
 .calendar-dates { top: 36%; }
 .calendar-dates .sunday { color: inherit; }
 .calendar-grid .seollal-day { position: relative; color: inherit; background: transparent; }
 .seollal-day::after { content: ""; position: absolute; bottom: 1cqw; left: 50%; width: 3.5cqw; height: 1px; background: #f0ded28c; transform: translateX(-50%); }
-.holiday-label { position: absolute; top: -.6cqw; left: 50%; z-index: 1; transform: translateX(-50%); color: #f0ded2; font: 2.4cqw/1 "Gowun Batang", serif; white-space: nowrap; }
-.calendar-grid .wedding-day { position: relative; isolation: isolate; color: #743d3c; background: transparent; border-radius: 0; font-weight: 600; }
+.holiday-label { position: absolute; top: -1.2cqw; left: 50%; z-index: 1; transform: translateX(-50%); color: #f0ded2; font: 9px/1 "Gowun Batang", serif; white-space: nowrap; }
+.calendar-grid .wedding-day { position: relative; isolation: isolate; color: #684643; background: transparent; border-radius: 0; font-weight: 600; }
 .wedding-day::after {
   content: "";
   position: absolute;
   z-index: -1;
-  width: 8cqw;
-  height: 8cqw;
+  width: 8.7cqw;
+  height: 8.7cqw;
   background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Cpath%20d%3D%22M24%2044C18%2038%203%2029%203%2016C3%204%2017%201%2024%2011C31%201%2045%204%2045%2016C45%2029%2030%2039%2024%2044Z%22%20fill%3D%22%23faf3e8%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
   transform: rotate(-7deg);
   pointer-events: none;
