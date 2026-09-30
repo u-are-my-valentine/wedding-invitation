@@ -177,7 +177,6 @@ body { font-family: var(--serif); }
 .transport-row { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; padding: 14px 0; border: 0; }
 .transport-row strong { font: 13px/1.9 var(--serif); color: #785451; }
 .transport-row p { margin-top: 0; font: 14px/1.9 var(--serif); color: var(--muted); }
-.subway-line { color: #747f00; }
 
 #accounts { padding-top: 32px; padding-bottom: 72px; text-align: center; }
 #accounts h2 { font-size: 21px; }

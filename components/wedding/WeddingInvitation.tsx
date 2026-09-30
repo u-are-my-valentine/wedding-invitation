@@ -385,7 +385,7 @@ export default function WeddingInvitation() {
             {config.transport.map((item) => (
               <div className="transport-row" key={item.label}>
                 <strong>{item.label}</strong>
-                <p>{item.label === "지하철" ? <><span className="subway-line">●</span> {item.description}</> : item.description}</p>
+                <p>{item.description}</p>
               </div>
             ))}
           </div>
