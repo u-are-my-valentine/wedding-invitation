@@ -19,10 +19,10 @@
   font-display: swap;
 }
 :root {
-  --paper: #faf9f6;
-  --paper-deep: #f0eeea;
-  --ink: #484745;
-  --muted: #74736e;
+  --paper: #f0eee9;
+  --paper-deep: #e8e5df;
+  --ink: #383735;
+  --muted: #686762;
   --sage: #777b73;
   --sage-dark: #535650;
   --line: #d7d6d0;
