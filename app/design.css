@@ -21,10 +21,10 @@
 :root {
   --paper: #f0eee9;
   --paper-deep: #e8e5df;
-  --ink: #383735;
-  --muted: #686762;
-  --sage: #777b73;
-  --sage-dark: #535650;
+  --ink: #242321;
+  --muted: #504f4a;
+  --sage: #5d6159;
+  --sage-dark: #3d403a;
   --line: #d7d6d0;
   --white: #fdfcf9;
   --latin: "Cutive Mono", "Courier New", monospace;
@@ -98,9 +98,9 @@ body { font-family: var(--serif); }
 .calendar-weekdays .sunday { color: var(--muted); }
 .calendar-dates .sunday { color: var(--ink); }
 .calendar-dates > span { height: 56px; }
-.calendar-grid .seollal-day { position: relative; color: #82796c; background: transparent; }
+.calendar-grid .seollal-day { position: relative; color: #696053; background: transparent; }
 .seollal-day::after { content: ""; position: absolute; bottom: 7px; left: 50%; width: 18px; height: 1px; background: #82796c80; transform: translateX(-50%); }
-.holiday-label { position: absolute; top: 2px; left: 50%; z-index: 1; transform: translateX(-50%); color: #82796c; font: 10.5px/1.2 "Gowun Batang", serif; white-space: nowrap; }
+.holiday-label { position: absolute; top: 2px; left: 50%; z-index: 1; transform: translateX(-50%); color: #696053; font: 10.5px/1.2 "Gowun Batang", serif; white-space: nowrap; }
 .calendar-grid .wedding-day { position: relative; color: var(--ink); background: transparent; border-radius: 0; }
 .wedding-day::after {
   content: "";
