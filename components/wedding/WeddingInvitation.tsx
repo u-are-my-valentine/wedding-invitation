@@ -15,6 +15,7 @@ import {
   getMonthCalendar,
   getWeddingDate,
 } from "@/lib/wedding-date";
+import { setupCoverScroll } from "@/lib/cover-scroll";
 import type { Account, Person } from "@/types/wedding";
 
 const weddingDate = getWeddingDate(config.wedding.date, config.wedding.time);
@@ -198,6 +199,7 @@ export default function WeddingInvitation() {
     const timer = window.setInterval(() => setNow(Date.now()), 1000);
     return () => window.clearInterval(timer);
   }, []);
+  useEffect(setupCoverScroll, []);
   const touchStartX = useRef<number | null>(null);
 
   const closeGallery = () => setGalleryIndex(null);

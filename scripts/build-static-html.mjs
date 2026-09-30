@@ -1,3 +1,4 @@
+import ts from "typescript";
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
@@ -50,9 +51,13 @@ const dialogs = `
   </div>
 </div>`;
 
+const coverScroll = ts.transpileModule(await readFile(resolve(root, "lib/cover-scroll.ts"), "utf8"), { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText.replace("export function", "function");
+
 const script = `
 <script>
 (() => {
+  ${coverScroll}
+  setupCoverScroll();
   const gallery = ${JSON.stringify([
     "0100","0177","0316","0392","0463","0644","0807","0922",
     "1133","1186","1330","1420","1439","1471","1499",
