@@ -48,7 +48,7 @@ body { font-family: var(--serif); }
   justify-content: center;
   min-height: max(640px, 100svh);
   padding: 88px 28px 112px;
-  background: #484745 url("/images/location/invitation-paper.png") repeat;
+  background: #514541 url("/images/location/invitation-paper.png") repeat;
   background-size: 132px 132px;
   background-blend-mode: multiply;
   color: #f0ede6;
