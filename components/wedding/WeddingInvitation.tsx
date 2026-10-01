@@ -11,6 +11,7 @@ import {
   useState,
 } from "react";
 import { weddingConfig as config } from "@/config/wedding";
+import coverImage from "@/config/cover-image.json";
 import {
   getCountdown,
   getMonthCalendar,
@@ -286,16 +287,20 @@ export default function WeddingInvitation() {
     <>
       <main className="invitation-shell">
         <section className="cover" aria-labelledby="cover-title">
-          <Image
-            className="cover-stamp-2-photo"
-            alt="레이스 테두리 안의 곽재현과 정연수 웨딩 사진"
-            src="/images/wedding/cover-lace-portrait.77ebb28c.webp"
-            width={1165}
-            height={1350}
-            sizes="290px"
-            priority
-            unoptimized
-          />
+          <picture className="cover-stamp-2-picture">
+            <source type="image/avif" srcSet={coverImage.avifSrcSet} sizes={coverImage.sizes} />
+            <source type="image/webp" srcSet={coverImage.webpSrcSet} sizes={coverImage.sizes} />
+            <Image
+              className="cover-stamp-2-photo"
+              alt="레이스 테두리 안의 곽재현과 정연수 웨딩 사진"
+              src={coverImage.fallback}
+              width={1165}
+              height={1350}
+              loading="eager"
+              fetchPriority="high"
+              unoptimized
+            />
+          </picture>
           <div className="stamp-heading">
             <p><span className="cover-typing">THE WEDDING OF</span></p>
             <h1 id="cover-title">{config.couple.bride.name}<i>&amp;</i>{config.couple.groom.name}</h1>

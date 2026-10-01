@@ -7,6 +7,8 @@ const imageOrigin = (process.env.WEDDING_IMAGE_ORIGIN ?? "https://warm-wedding-i
 const sourceHtml = resolve("/tmp/wedding-rendered.html");
 const outputDir = resolve(root, "docs");
 const outputHtml = resolve(outputDir, "index.html");
+const coverImage = JSON.parse(await readFile(resolve(root, "config/cover-image.json"), "utf8"));
+const coverPreload = `<link rel="preload" as="image" type="image/avif" imagesrcset="${coverImage.avifSrcSet.replaceAll('/images/', `${imageOrigin}/images/`)}" imagesizes="${coverImage.sizes}" fetchpriority="high">`;
 const css = (await readFile(resolve(root, "app/globals.css"), "utf8")) + "\n" + (await readFile(resolve(root, "app/design.css"), "utf8")).replaceAll('/fonts/', './fonts/').replaceAll('/images/', './images/');
 let html = await readFile(sourceHtml, "utf8");
 
@@ -24,9 +26,12 @@ html = html
     /\/_vinext\/image\?url=%2Fimages%2Fwedding%2F(\d+)\.webp&amp;w=\d+&amp;q=\d+/g,
     "./images/wedding/$1.webp",
   )
-  .replace(/ srcset="[^"]*"/gi, "")
+  .replace(/<img\b[^>]*>/gi, tag => tag.replace(/ srcset="[^"]*"/gi, ""))
+  .replaceAll('srcSet="/images/', 'srcSet="./images/')
+  .replaceAll('srcset="/images/', 'srcset="./images/')
+  .replaceAll(', /images/', ', ./images/')
   .replaceAll('src="/images/', 'src="./images/')
-  .replace("</head>", `${imageOrigin ? `<link rel="preconnect" href="${imageOrigin}">` : ""}<link rel="preload" as="image" href="${imageOrigin}/images/wedding/cover-lace-portrait.77ebb28c.webp" fetchpriority="high"><style>${css}</style></head>`);
+  .replace("</head>", `${imageOrigin ? `<link rel="preconnect" href="${imageOrigin}">` : ""}${coverPreload}<style>${css}</style></head>`);
 
 const extraStyles = `
 <style>

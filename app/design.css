@@ -83,10 +83,14 @@ body { font-family: var(--serif); }
   color: #f0ede6;
   text-align: center;
 }
-.cover-stamp-2-photo {
+.cover-stamp-2-picture {
   display: block;
   width: 290px;
   max-width: 100%;
+}
+.cover-stamp-2-photo {
+  display: block;
+  width: 100%;
   height: auto;
 }
 .stamp-heading { margin-top: 32px; }

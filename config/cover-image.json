@@ -1,0 +1,6 @@
+{
+  "avifSrcSet": "/images/wedding/cover-lace-580.ae48fa11.avif 580w, /images/wedding/cover-lace-870.90bffc29.avif 870w",
+  "webpSrcSet": "/images/wedding/cover-lace-580.93de4f30.webp 580w, /images/wedding/cover-lace-870.ccc9db9e.webp 870w",
+  "fallback": "/images/wedding/cover-lace-580.93de4f30.webp",
+  "sizes": "(max-width: 346px) calc(100vw - 56px), 290px"
+}
