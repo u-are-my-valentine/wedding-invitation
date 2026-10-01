@@ -1,8 +1,10 @@
 export function setupCoverScroll() {
   const invitation = document.getElementById("invitation");
-  if (!invitation) return;
+  const cover = document.querySelector<HTMLElement>(".cover");
+  if (!invitation || !cover) return;
 
   let advancing = false;
+  let advanceTimeout: ReturnType<typeof setTimeout> | undefined;
   let coverGesture = false;
   let startX = 0;
   let startY = 0;
@@ -10,6 +12,8 @@ export function setupCoverScroll() {
   function advance() {
     if (advancing || invitation!.getBoundingClientRect().top <= 2) return;
     advancing = true;
+    clearTimeout(advanceTimeout);
+    advanceTimeout = setTimeout(() => { advancing = false; }, 1500);
     invitation!.scrollIntoView({
       block: "start",
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
@@ -21,13 +25,13 @@ export function setupCoverScroll() {
   }
 
   function onWheel(event: WheelEvent) {
-    if (event.ctrlKey || (!advancing && window.scrollY > 2)) return;
+    if (event.ctrlKey || window.scrollY > 2) return;
     event.preventDefault();
     if (event.deltaY > 0 && Math.abs(event.deltaY) > Math.abs(event.deltaX)) advance();
   }
 
   function onTouchStart(event: TouchEvent) {
-    coverGesture = event.touches.length === 1 && (window.scrollY <= 2 || advancing);
+    coverGesture = event.touches.length === 1 && window.scrollY <= 2;
     if (!coverGesture) return;
     startX = event.touches[0].clientX;
     startY = event.touches[0].clientY;
@@ -44,17 +48,18 @@ export function setupCoverScroll() {
   function onTouchEnd() { coverGesture = false; }
 
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("wheel", onWheel, { passive: false });
-  window.addEventListener("touchstart", onTouchStart, { passive: true });
-  window.addEventListener("touchmove", onTouchMove, { passive: false });
-  window.addEventListener("touchend", onTouchEnd, { passive: true });
-  window.addEventListener("touchcancel", onTouchEnd, { passive: true });
+  cover.addEventListener("wheel", onWheel, { passive: false });
+  cover.addEventListener("touchstart", onTouchStart, { passive: true });
+  cover.addEventListener("touchmove", onTouchMove, { passive: false });
+  cover.addEventListener("touchend", onTouchEnd, { passive: true });
+  cover.addEventListener("touchcancel", onTouchEnd, { passive: true });
   return () => {
+    clearTimeout(advanceTimeout);
     window.removeEventListener("scroll", onScroll);
-    window.removeEventListener("wheel", onWheel);
-    window.removeEventListener("touchstart", onTouchStart);
-    window.removeEventListener("touchmove", onTouchMove);
-    window.removeEventListener("touchend", onTouchEnd);
-    window.removeEventListener("touchcancel", onTouchEnd);
+    cover.removeEventListener("wheel", onWheel);
+    cover.removeEventListener("touchstart", onTouchStart);
+    cover.removeEventListener("touchmove", onTouchMove);
+    cover.removeEventListener("touchend", onTouchEnd);
+    cover.removeEventListener("touchcancel", onTouchEnd);
   };
 }

@@ -26,7 +26,7 @@ html = html
   )
   .replaceAll('src="/images/', 'src="./images/')
   .replace(/srcset="[^"]*"/gi, (attribute) => attribute.replace(/([" ,])\/images\//g, "$1./images/"))
-  .replace("</head>", `<style>${css}</style></head>`);
+  .replace("</head>", `<link rel="preconnect" href="${imageOrigin}"><link rel="preload" as="image" href="${imageOrigin}/images/wedding/cover-lace-portrait.png" fetchpriority="high"><style>${css}</style></head>`);
 
 const extraStyles = `
 <style>

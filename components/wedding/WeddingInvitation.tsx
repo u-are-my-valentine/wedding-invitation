@@ -281,10 +281,10 @@ export default function WeddingInvitation() {
           <Image
             className="cover-stamp-2-photo"
             alt="레이스 테두리 안의 곽재현과 정연수 웨딩 사진"
-            src="/images/wedding/cover-stamp-2-transparent.png"
-            width={1254}
-            height={1254}
-            sizes="310px"
+            src="/images/wedding/cover-lace-portrait.png"
+            width={1165}
+            height={1350}
+            sizes="290px"
             priority
             unoptimized
           />
