@@ -1,0 +1,11 @@
+# These filenames contain a content hash; new image bytes must use a new filename.
+/images/wedding/cover-lace-portrait.77ebb28c.webp
+  Cache-Control: public, max-age=31536000, immutable
+/images/wedding/closing-collage.71aa885f.webp
+  Cache-Control: public, max-age=31536000, immutable
+/images/location/dressgarden-route-sidewalk.e3228be3.webp
+  Cache-Control: public, max-age=31536000, immutable
+/images/location/invitation-paper.c242ba71.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

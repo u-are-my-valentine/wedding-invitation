@@ -4,6 +4,7 @@
   font-weight: 300 700;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+20-7E,U+A0-B4,U+B6-17F,U+18F,U+192,U+197,U+1A0-1A1,U+1AF-1B0,U+1CD-1DC,U+1E2-1E3,U+1E6-1EB,U+1F8-21B,U+232-233,U+237,U+244,U+251,U+259,U+261,U+268,U+289,U+2BB-2BC,U+2BE-2BF,U+2C6-2C8,U+2CA-2CC,U+2D8-2DD,U+300-304,U+306-30D,U+30F,U+311,U+31B,U+323-324,U+326-328,U+32D-32E,U+331,U+34F,U+358,U+394,U+3A9,U+3BC,U+3C0,U+400-45F,U+462-463,U+46A-46B,U+472-475,U+48A-4A5,U+4A8-4FF,U+510-513,U+51A-51D,U+524-529,U+52E-52F,U+E3F,U+1DB0,U+1E0C-1E0F,U+1E20-1E21,U+1E24-1E25,U+1E2A-1E2B,U+1E30-1E31,U+1E36-1E3B,U+1E3E-1E4B,U+1E5A-1E63,U+1E6C-1E6F,U+1E80-1E85,U+1E8E-1E8F,U+1E92-1E93,U+1E97,U+1E9E,U+1EA0-1EF9,U+2000-200D,U+2010-2015,U+2018-201A,U+201C-201E,U+2020-2022,U+2026-2029,U+202F-2030,U+2032-2033,U+2039-203A,U+2042-2044,U+205F-2060,U+2063,U+2070,U+2074-207A,U+207D-2089,U+208D-208E,U+20A1,U+20A4,U+20A6-20A7,U+20AA-20AC,U+20AE,U+20B1-20B2,U+20B4-20B5,U+20B8-20BA,U+20BD,U+2113,U+2116-2117,U+2120,U+2122,U+212E,U+215B-215E,U+2190-2199,U+2202,U+2205,U+220F,U+2211-2212,U+221A,U+221E,U+222B,U+2248,U+2260,U+2264-2265,U+25A0-25A1,U+25B2-25B3,U+25B6-25B7,U+25BC-25BD,U+25C0-25C1,U+25C6-25C7,U+25CA-25CB,U+25CF,U+25E6,U+25FB-25FC,U+261C,U+261E,U+263A,U+2766,U+2B1B-2B1C,U+3000,U+A729,U+A78B-A78C,U+FEFF,U+FFF9-FFFB;
 }
 @font-face {
   font-family: "Cutive Mono";
@@ -11,13 +12,41 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+D,U+20-7E,U+91-94,U+9A-9B,U+9D,U+A0-AC,U+AE-161,U+164-17E,U+192,U+1C4-1CC,U+1F1-1F5,U+200-21B,U+237,U+2C6-2C7,U+2D8-2DD,U+300-304,U+306-308,U+30A-30C,U+30F,U+311,U+326-328,U+3BC,U+1E02-1E03,U+1E0A-1E0B,U+1E1E-1E1F,U+1E40-1E41,U+1E56-1E57,U+1E60-1E61,U+1E6A-1E6B,U+1E80-1E85,U+1E9E,U+1EF2-1EF3,U+2013-2014,U+2018-201A,U+201C-201E,U+2020-2022,U+2026,U+2030,U+2039-203A,U+2044,U+2074,U+20AC,U+2122,U+2206,U+220F,U+2212,U+2215,U+221E,U+222B,U+2248,U+2260,U+2264-2265,U+25CA,U+FB01-FB02;
 }
 @font-face {
   font-family: "Gowun Batang";
   src: url("/fonts/GowunBatang-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
+  unicode-range: U+D,U+20-7E,U+A0-17E,U+18F,U+192,U+1A0-1A1,U+1AF-1B0,U+1C4-1CC,U+1E6-1E7,U+1EA-1EB,U+1FA-21B,U+22A-22D,U+230-233,U+237,U+259,U+2B9-2BA,U+2BC,U+2C6-2C7,U+2C9,U+2D0,U+2D8-2DD,U+300-304,U+306-30C,U+30F,U+311-312,U+31B,U+323-324,U+326-328,U+32E,U+331,U+335-338,U+1E80-1E85,U+1E9E,U+1EA0-1EF9,U+2002-2003,U+2005,U+2007,U+2010,U+2013-2016,U+2018-201A,U+201C-201E,U+2020-2023,U+2025-2026,U+2030,U+2032-2033,U+2039-203C,U+203E,U+2044,U+2047-2049,U+2052,U+2070,U+2074-2079,U+207F-2089,U+20A1,U+20A3-20A4,U+20A6-20A7,U+20A9,U+20AB-20AD,U+20B1-20B2,U+20B5,U+20B9-20BA,U+20BC-20BD,U+2103,U+2109,U+2113,U+2116,U+2121-2122,U+2126,U+212B,U+212E,U+2153-2154,U+215B-215E,U+2160-2169,U+2170-2179,U+2190-2199,U+21D2,U+21D4,U+2200,U+2202-2203,U+2206-2208,U+220B,U+220F,U+2211-2212,U+2215,U+2219-221A,U+221D-221E,U+2220,U+2223,U+2225,U+2227-222C,U+222E,U+2234-2236,U+223C-223D,U+2248,U+2252,U+2260-2261,U+2264-2267,U+226A-226B,U+2282-2283,U+2286-2287,U+2299,U+22A5,U+22EF,U+2312,U+2329-232A,U+2460-2487,U+249C-24F4,U+24FF-2503,U+250C-254B,U+2592,U+25A0-25A1,U+25A3-25A9,U+25B2-25B3,U+25B6-25B7,U+25BC-25BD,U+25C0-25C1,U+25C6-25CB,U+25CE-25D1,U+25E6,U+2605-2606,U+260E-260F,U+261C,U+261E,U+2640,U+2642,U+2660-2661,U+2663-2665,U+2667-266A,U+266C-266D,U+274C,U+2776-277F,U+27E8-27E9,U+3000-3003,U+3008-3011,U+3013-3015,U+301C,U+3131-318E,U+3200-321C,U+3260-327B,U+327E-327F,U+3380-3384,U+3388-33CA,U+33CF-33D0,U+33D3,U+33D6,U+33D8,U+33DB-33DD,U+AC00-D7A3,U+FB01-FB02,U+FF01-FF5E,U+FFE0-FFE3,U+FFE5-FFE6,U+1F110-1F129;
 }
+/* UI font subsets; full faces above cover additional characters. */
+@font-face {
+  font-family: "Gowun Batang";
+  src: url("/fonts/GowunBatang-Regular-ui.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+20-7E,U+B7,U+D7,U+2039-203A,U+2197,U+2665,U+AC00,U+AC04,U+AC10,U+AC15,U+AC83,U+AC8C,U+ACB0,U+ACC4,U+ACF3,U+ACF5,U+ACFC-ACFD,U+AD50,U+AD6C-AD6D,U+ADF8,U+AE30,U+AE38,U+AED8,U+B098,U+B0A0,U+B0A8,U+B0AC,U+B0AE,U+B0B4,U+B144,U+B20C,U+B294,U+B2C8,U+B2E4,U+B2EB-B2EC,U+B2F4,U+B300,U+B354,U+B3C4,U+B3D9,U+B418,U+B420,U+B429,U+B450,U+B4DC,U+B4E0,U+B4E4,U+B529,U+B538,U+B54C,U+B77C,U+B780,U+B791,U+B7EC,U+B808,U+B824-B825,U+B85C-B85D,U+B8CC,U+B8E8,U+B9AC,U+B9BD,U+B9C1,U+B9C8,U+B9CC,U+BA74,U+BAA8-BAA9,U+BABB,U+BB34,U+BBFC,U+BC30,U+BC84,U+BC88,U+BCC4,U+BCF4-BCF5,U+BD80,U+BD84,U+BD89,U+C05C,U+C0AC,U+C0B4,U+C0C1,U+C0DD,U+C11C,U+C120,U+C124,U+C138,U+C218,U+C2A4,U+C2B5,U+C2DC-C2DD,U+C2E0,U+C2E4,U+C544,U+C548,U+C558,U+C57D,U+C5B5,U+C5C6,U+C5C8,U+C5D0,U+C5D4,U+C5ED,U+C5F0,U+C601,U+C608,U+C624,U+C640,U+C694,U+C6A9,U+C6B0,U+C6B8,U+C6D0,U+C6D4,U+C6E8,U+C704,U+C720,U+C73C,U+C740,U+C744,U+C74C,U+C758,U+C774,U+C778,U+C77C,U+C785,U+C791,U+C7A5,U+C7AC,U+C800,U+C804,U+C815,U+C81C,U+C88C,U+C8FC,U+C9C0,U+C9C4,U+C9F8,U+CC28,U+CCA0,U+CCA9,U+CCAB,U+CCAD,U+CCB4,U+CD08,U+CD94-CD95,U+CD9C,U+CE21,U+CE58,U+CE5C,U+CF5C,U+D06C,U+D14C,U+D2B9,U+D30C,U+D45C,U+D558,U+D55C,U+D560,U+D568-D569,U+D574,U+D588-D589,U+D604,U+D638,U+D63C,U+D640,U+D654,U+D6C4,U+D734,U+D76C;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-ui.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+20-7E,U+B7,U+D7,U+2039-203A,U+2197;
+}
+@font-face {
+  font-family: "Cutive Mono";
+  src: url("/fonts/CutiveMono-Regular-ui.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+20-7E,U+B7,U+D7,U+2039-203A;
+}
+/* End UI font subsets. */
 :root {
   --paper: #f0eee9;
   --paper-deep: #e8e5df;
@@ -31,12 +60,12 @@
   --calendar: "Cormorant Garamond", "Times New Roman", serif;
   --serif: "Cutive Mono", "Gowun Batang", "AppleMyungjo", "Batang", serif;
 }
-html, body { background: var(--paper) url("/images/location/invitation-paper.png") repeat; background-size: 132px 132px; background-blend-mode: multiply; }
+html, body { background: var(--paper) url("/images/location/invitation-paper.c242ba71.webp") repeat; background-size: 132px 132px; background-blend-mode: multiply; }
 body { font-family: var(--serif); }
 .invitation-shell {
   max-width: 480px;
   background-color: var(--paper);
-  background-image: url("/images/location/invitation-paper.png");
+  background-image: url("/images/location/invitation-paper.c242ba71.webp");
   background-size: 132px 132px;
   background-blend-mode: multiply;
   box-shadow: 0 0 60px #140f0c26;
@@ -48,7 +77,7 @@ body { font-family: var(--serif); }
   justify-content: center;
   min-height: max(640px, 100svh);
   padding: 88px 28px 112px;
-  background: #514541 url("/images/location/invitation-paper.png") repeat;
+  background: #514541 url("/images/location/invitation-paper.c242ba71.webp") repeat;
   background-size: 132px 132px;
   background-blend-mode: multiply;
   color: #f0ede6;
@@ -110,7 +139,7 @@ body { font-family: var(--serif); }
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: #845c59 url("/images/location/invitation-paper.png") repeat;
+  background: #845c59 url("/images/location/invitation-paper.c242ba71.webp") repeat;
   background-size: 132px 132px;
   background-blend-mode: multiply;
   -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20440%22%3E%3Cpath%20d%3D%22M180%2067C162%209%20115%202%2077%2013C24%2027%209%2072%208%20134C5%20252%2071%20348%20180%20431C284%20339%20354%20244%20352%20128C351%2066%20335%2019%20286%2010C237%201%20193%2021%20180%2067Z%22%20fill%3D%22%23914d4b%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
@@ -203,8 +232,8 @@ body { font-family: var(--serif); }
 .account-bank { color: var(--muted); font: 13px/1.6 var(--serif); }
 .account-row strong { font: 15px/1.6 var(--latin); overflow-wrap: anywhere; }
 .account-row .text-button { flex-shrink: 0; min-width: 44px; min-height: 44px; padding: 8px 4px; font: 12px/1.8 var(--serif); border: 0; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 5px; }
-.closing { width: calc(100% - 64px); margin: 0 auto; min-height: 0; height: auto; aspect-ratio: 3 / 2; border: 8px solid #faf7f0; box-shadow: 0 3px 12px #42382e12; background: transparent; }
-.closing img { object-fit: cover; }
+.closing { width: calc(100% - 64px); margin: 0 auto; min-height: 0; height: auto; border: 8px solid #faf7f0; box-shadow: 0 3px 12px #42382e12; background: transparent; }
+.closing img { display: block; position: static; width: 100%; height: auto; object-fit: contain; }
 footer { padding: 32px 20px calc(48px + env(safe-area-inset-bottom)); }
 footer button { min-height: 44px; padding: 8px 16px; font: 13px/1.8 var(--serif); color: #785451; border-bottom-color: #845c5960; letter-spacing: .06em; }
 footer > span { display: none; }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import {
   type ReactNode,
   type TouchEvent,
+  useCallback,
   useEffect,
   useId,
   useRef,
@@ -123,7 +124,7 @@ function AccessibleDialog({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.classList.remove("modal-open");
-      previousFocus?.focus();
+      previousFocus?.focus({ preventScroll: true });
     };
   }, [onClose, open]);
 
@@ -196,13 +197,20 @@ export default function WeddingInvitation() {
   const countdown = now === null ? null : getCountdown(weddingDate, new Date(now));
 
   useEffect(() => {
-    const timer = window.setInterval(() => setNow(Date.now()), 1000);
-    return () => window.clearInterval(timer);
+    const update = () => { if (!document.hidden) setNow(Date.now()); };
+    const initial = window.setTimeout(update, 0);
+    const timer = window.setInterval(update, 60_000);
+    document.addEventListener("visibilitychange", update);
+    return () => {
+      window.clearTimeout(initial);
+      window.clearInterval(timer);
+      document.removeEventListener("visibilitychange", update);
+    };
   }, []);
   useEffect(setupCoverScroll, []);
   const touchStartX = useRef<number | null>(null);
 
-  const closeGallery = () => setGalleryIndex(null);
+  const closeGallery = useCallback(() => setGalleryIndex(null), []);
   const scrollGallery = (direction: number) => {
     const strip = galleryStripRef.current;
     if (!strip) return;
@@ -281,7 +289,7 @@ export default function WeddingInvitation() {
           <Image
             className="cover-stamp-2-photo"
             alt="레이스 테두리 안의 곽재현과 정연수 웨딩 사진"
-            src="/images/wedding/cover-lace-portrait.png"
+            src="/images/wedding/cover-lace-portrait.77ebb28c.webp"
             width={1165}
             height={1350}
             sizes="290px"
@@ -374,7 +382,7 @@ export default function WeddingInvitation() {
             <Image
               className="venue-map"
               alt="청담역 13번 출구에서 드레스가든으로 가는 길을 붉은 화살표로 표시한 약도"
-              src="/images/location/dressgarden-route-sidewalk.png"
+              src="/images/location/dressgarden-route-sidewalk.e3228be3.webp"
               width={1540}
               height={1021}
               unoptimized
@@ -417,11 +425,12 @@ export default function WeddingInvitation() {
 
         <section className="closing">
           <Image
-            alt={config.gallery[10].alt}
-            fill
+            alt="연수와 재현의 웨딩 사진과 추억을 담은 콜라주"
+            width={801}
+            height={586}
             unoptimized
             sizes="(max-width: 480px) 88vw, 424px"
-            src={config.gallery[10].src}
+            src="/images/wedding/closing-collage.71aa885f.webp"
           />
         </section>
 

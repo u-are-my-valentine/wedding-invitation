@@ -3,7 +3,7 @@ import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const root = process.cwd();
-const imageOrigin = "https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site";
+const imageOrigin = (process.env.WEDDING_IMAGE_ORIGIN ?? "https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site").replace(/\/$/, "");
 const sourceHtml = resolve("/tmp/wedding-rendered.html");
 const outputDir = resolve(root, "docs");
 const outputHtml = resolve(outputDir, "index.html");
@@ -24,9 +24,9 @@ html = html
     /\/_vinext\/image\?url=%2Fimages%2Fwedding%2F(\d+)\.webp&amp;w=\d+&amp;q=\d+/g,
     "./images/wedding/$1.webp",
   )
+  .replace(/ srcset="[^"]*"/gi, "")
   .replaceAll('src="/images/', 'src="./images/')
-  .replace(/srcset="[^"]*"/gi, (attribute) => attribute.replace(/([" ,])\/images\//g, "$1./images/"))
-  .replace("</head>", `<link rel="preconnect" href="${imageOrigin}"><link rel="preload" as="image" href="${imageOrigin}/images/wedding/cover-lace-portrait.png" fetchpriority="high"><style>${css}</style></head>`);
+  .replace("</head>", `${imageOrigin ? `<link rel="preconnect" href="${imageOrigin}">` : ""}<link rel="preload" as="image" href="${imageOrigin}/images/wedding/cover-lace-portrait.77ebb28c.webp" fetchpriority="high"><style>${css}</style></head>`);
 
 const extraStyles = `
 <style>
@@ -107,7 +107,7 @@ const script = `
   function closeDialog(dialog) {
     dialog.hidden = true;
     document.body.classList.remove("modal-open");
-    if (previousFocus) previousFocus.focus();
+    if (previousFocus) previousFocus.focus({ preventScroll: true });
   }
 
   function renderGallery() {
@@ -122,9 +122,13 @@ const script = `
   }
 
   const galleryStrip = document.querySelector(".gallery-strip");
+  const galleryPosition = document.querySelector(".gallery-position span");
+  let visibleSlide = 0;
   galleryStrip.addEventListener("scroll", () => {
     const index = Math.max(0, Math.min(gallery.length - 1, Math.round(galleryStrip.scrollLeft / galleryStrip.clientWidth)));
-    document.querySelector(".gallery-position span").textContent = String(index + 1).padStart(2, "0");
+    if (index === visibleSlide) return;
+    visibleSlide = index;
+    galleryPosition.textContent = String(index + 1).padStart(2, "0");
   }, { passive: true });
   document.querySelectorAll(".gallery-step").forEach((button) => {
     button.addEventListener("click", () => {
@@ -208,17 +212,23 @@ const script = `
     if (openDialog === galleryDialog && event.key === "ArrowRight") moveGallery(1);
   });
 
+  const dday = document.querySelector(".dday");
+  const target = new Date(dday.dataset.weddingDate);
+  let countdownKey = "";
   function updateCountdown() {
-    const target = new Date(document.querySelector(".dday").dataset.weddingDate);
+    if (document.hidden) return;
     const now = new Date();
     const kstDate = date => new Date(date.getTime() + 9 * 3600000).toISOString().slice(0, 10);
     const days = Math.max(0, Math.round((Date.parse(kstDate(target)) - Date.parse(kstDate(now))) / 86400000));
-    const dday = document.querySelector(".dday");
+    const key = now >= target ? "finished" : String(days);
+    if (key === countdownKey) return;
+    countdownKey = key;
     if (now >= target) dday.textContent = "축복해 주신 모든 분께 감사드립니다.";
     else dday.innerHTML = "연수, 재현의 결혼식이 <strong>" + days + "</strong>일 남았습니다.";
   }
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  setInterval(updateCountdown, 60_000);
+  document.addEventListener("visibilitychange", updateCountdown);
 
 })();
 </script>`;
@@ -231,6 +241,7 @@ html = html
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
 await cp(resolve(root, "public/fonts"), resolve(outputDir, "fonts"), { recursive: true });
+if (!imageOrigin) await cp(resolve(root, "public/images"), resolve(outputDir, "images"), { recursive: true });
 await writeFile(resolve(outputDir, ".nojekyll"), "# Serve this directory as plain static files.\n");
 await writeFile(outputHtml, html);
 

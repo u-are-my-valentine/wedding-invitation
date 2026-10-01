@@ -5,15 +5,25 @@ export function setupCoverScroll() {
 
   let advancing = false;
   let advanceTimeout: ReturnType<typeof setTimeout> | undefined;
+  let targetY = 0;
   let coverGesture = false;
   let startX = 0;
   let startY = 0;
 
-  function advance() {
-    if (advancing || invitation!.getBoundingClientRect().top <= 2) return;
-    advancing = true;
+  function finishAdvance() {
+    advancing = false;
     clearTimeout(advanceTimeout);
-    advanceTimeout = setTimeout(() => { advancing = false; }, 1500);
+    window.removeEventListener("scroll", onScroll);
+  }
+
+  function advance() {
+    if (advancing) return;
+    const distance = invitation!.getBoundingClientRect().top;
+    if (distance <= 2) return;
+    targetY = window.scrollY + distance;
+    advancing = true;
+    window.addEventListener("scroll", onScroll, { passive: true });
+    advanceTimeout = setTimeout(finishAdvance, 1500);
     invitation!.scrollIntoView({
       block: "start",
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
@@ -21,7 +31,7 @@ export function setupCoverScroll() {
   }
 
   function onScroll() {
-    if (advancing && Math.abs(invitation!.getBoundingClientRect().top) < 2) advancing = false;
+    if (window.scrollY >= targetY - 2) finishAdvance();
   }
 
   function onWheel(event: WheelEvent) {
@@ -47,15 +57,13 @@ export function setupCoverScroll() {
 
   function onTouchEnd() { coverGesture = false; }
 
-  window.addEventListener("scroll", onScroll, { passive: true });
   cover.addEventListener("wheel", onWheel, { passive: false });
   cover.addEventListener("touchstart", onTouchStart, { passive: true });
   cover.addEventListener("touchmove", onTouchMove, { passive: false });
   cover.addEventListener("touchend", onTouchEnd, { passive: true });
   cover.addEventListener("touchcancel", onTouchEnd, { passive: true });
   return () => {
-    clearTimeout(advanceTimeout);
-    window.removeEventListener("scroll", onScroll);
+    finishAdvance();
     cover.removeEventListener("wheel", onWheel);
     cover.removeEventListener("touchstart", onTouchStart);
     cover.removeEventListener("touchmove", onTouchMove);
