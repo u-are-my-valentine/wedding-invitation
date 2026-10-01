@@ -60,12 +60,12 @@
   --calendar: "Cormorant Garamond", "Times New Roman", serif;
   --serif: "Cutive Mono", "Gowun Batang", "AppleMyungjo", "Batang", serif;
 }
-html, body { background: var(--paper) url("/images/location/invitation-paper.c242ba71.webp") repeat; background-size: 132px 132px; background-blend-mode: multiply; }
+html, body { background: var(--paper) url("/images/location/invitation-paper.15f8cfbb.webp") repeat; background-size: 132px 132px; background-blend-mode: multiply; }
 body { font-family: var(--serif); }
 .invitation-shell {
   max-width: 480px;
   background-color: var(--paper);
-  background-image: url("/images/location/invitation-paper.c242ba71.webp");
+  background-image: url("/images/location/invitation-paper.15f8cfbb.webp");
   background-size: 132px 132px;
   background-blend-mode: multiply;
   box-shadow: 0 0 60px #140f0c26;
@@ -77,7 +77,7 @@ body { font-family: var(--serif); }
   justify-content: center;
   min-height: max(640px, 100svh);
   padding: 88px 28px 112px;
-  background: #514541 url("/images/location/invitation-paper.c242ba71.webp") repeat;
+  background: #514541 url("/images/location/invitation-paper.15f8cfbb.webp") repeat;
   background-size: 132px 132px;
   background-blend-mode: multiply;
   color: #f0ede6;
@@ -143,7 +143,7 @@ body { font-family: var(--serif); }
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: #845c59 url("/images/location/invitation-paper.c242ba71.webp") repeat;
+  background: #845c59 url("/images/location/invitation-paper.15f8cfbb.webp") repeat;
   background-size: 132px 132px;
   background-blend-mode: multiply;
   -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20440%22%3E%3Cpath%20d%3D%22M180%2067C162%209%20115%202%2077%2013C24%2027%209%2072%208%20134C5%20252%2071%20348%20180%20431C284%20339%20354%20244%20352%20128C351%2066%20335%2019%20286%2010C237%201%20193%2021%20180%2067Z%22%20fill%3D%22%23914d4b%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
