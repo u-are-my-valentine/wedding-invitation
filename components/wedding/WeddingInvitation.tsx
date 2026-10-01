@@ -284,12 +284,12 @@ export default function WeddingInvitation() {
             src="/images/wedding/cover-stamp-2-transparent.png"
             width={1254}
             height={1254}
-            sizes="290px"
+            sizes="310px"
             priority
             unoptimized
           />
           <div className="stamp-heading">
-            <p>THE WEDDING OF</p>
+            <p><span className="cover-typing">THE WEDDING OF</span></p>
             <h1 id="cover-title">{config.couple.bride.name}<i>&amp;</i>{config.couple.groom.name}</h1>
             <p className="stamp-date">{monthEnglish.toUpperCase()} {weddingDay}, {weddingYear}<br />{coverTime}</p>
           </div>

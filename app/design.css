@@ -56,11 +56,16 @@ body { font-family: var(--serif); }
 }
 .cover-stamp-2-photo {
   display: block;
-  width: 290px;
+  width: 310px;
   max-width: 100%;
   height: auto;
 }
 .stamp-heading { margin-top: 32px; }
+.cover-typing { display: inline-block; white-space: nowrap; animation: cover-type 1.8s steps(13, end) .45s both; }
+@keyframes cover-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .cover-typing { animation: none; clip-path: none; }
+}
 .stamp-heading > p { margin: 0; font: 13px/1.8 var(--latin); letter-spacing: .08em; }
 .cover .stamp-heading h1 { margin: 7px 0 0; font: 17px/1.8 var(--serif); letter-spacing: .12em; gap: 12px; }
 .cover .stamp-heading h1 i { margin: 0; font: 16px var(--latin); }
