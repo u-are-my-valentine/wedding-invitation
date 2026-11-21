@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>곽재현 ♥ 정연수, 결혼합니다</title><meta name="description" content="2027년 2월 14일 일요일 오후 12시 30분 · 드레스가든"/><meta name="robots" content="noindex, nofollow"/><meta property="og:title" content="곽재현 ♥ 정연수, 결혼합니다"/><meta property="og:description" content="2027년 2월 14일 일요일 오후 12시 30분 · 드레스가든"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:image" content="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/og.png?v=bw-collage-original-20261001"/><meta property="og:image:width" content="801"/><meta property="og:image:height" content="586"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="곽재현 ♥ 정연수, 결혼합니다"/><meta name="twitter:description" content="2027년 2월 14일 일요일 오후 12시 30분 · 드레스가든"/><meta name="twitter:image" content="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/og.png?v=bw-collage-original-20261001"/><meta name="theme-color" content="#f8f5ef"/>
-<link rel="preconnect" href="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site"><link rel="preload" as="image" type="image/avif" imagesrcset="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-580.5a95cea9.avif 580w, https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-870.c2eaf8fb.avif 870w" imagesizes="(max-width: 346px) calc(100vw - 56px), 290px" fetchpriority="high"><style>:root {
+<link rel="preconnect" href="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site"><style>:root {
   --paper: #f8f5ef;
   --paper-deep: #eee9df;
   --ink: #302f2b;
@@ -949,6 +949,7 @@ footer button {
 }
 /* End UI font subsets. */
 :root {
+  --envelope-release-delay: .55s;
   --paper: #f0eee9;
   --paper-deep: #e8e5df;
   --ink: #242321;
@@ -984,15 +985,45 @@ body { font-family: var(--serif); }
   color: #f0ede6;
   text-align: center;
 }
-.cover-stamp-2-picture {
-  display: block;
-  width: 290px;
-  max-width: 100%;
+.lace-portrait {
+  position: relative;
+  width: min(91.2%, 301px);
+  aspect-ratio: 10 / 13;
 }
-.cover-stamp-2-photo {
+.lace-portrait::before {
+  --openwork-mask: url("./art/lace-openwork-mask.webp") center / 100% 100% no-repeat;
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(54deg, transparent 0 1.65px, rgb(255 255 255 / 72%) 1.9px 2.15px, transparent 2.4px),
+    repeating-linear-gradient(-54deg, transparent 0 1.65px, rgb(255 255 255 / 60%) 1.9px 2.15px, transparent 2.4px);
+  -webkit-mask: var(--openwork-mask);
+  mask: var(--openwork-mask);
+}
+.lace-portrait-opening {
+  position: absolute;
+  /* Let the photo tuck just under the embroidered oval seam. */
+  inset: 4.37% 10.47% 5.24% 10.11%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.lace-portrait-photo {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 10%;
+  transform: scale(1.39);
+  transform-origin: 59% 6.5%;
+}
+.lace-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("./art/white-guipure-lace.webp") center / 100% 100% no-repeat;
+  pointer-events: none;
 }
 .stamp-heading { margin-top: 32px; }
 .cover-typing { display: inline-block; white-space: nowrap; animation: cover-type 1.8s steps(13, end) .45s both; }
@@ -1177,7 +1208,7 @@ html.envelope-active, html.envelope-active body { overflow: hidden; }
 .envelope-leaf {
   position: absolute; inset-block: 0; width: 50%;
   overflow: hidden; backface-visibility: hidden; background: var(--linen-dye);
-  transition: transform 5.4s .55s cubic-bezier(.30,.12,.52,1);
+  transition: transform 5.4s var(--envelope-release-delay) cubic-bezier(.30,.12,.52,1);
 }
 .envelope-leaf::before {
   content: ""; position: absolute; inset-block: 0; width: 200%;
@@ -1212,7 +1243,15 @@ html.envelope-active, html.envelope-active body { overflow: hidden; }
 .is-opening .envelope-cartouche { opacity: 0; transform: translate(-50%, -54%) scale(1.035); }
 .is-opening .envelope-left { transform: translateX(-8%) rotateY(-90deg); }
 .is-opening .envelope-right { transform: translateX(8%) rotateY(90deg); }
-.envelope-active .cover-typing { animation-play-state: paused; }
+@media (prefers-reduced-motion: no-preference) {
+  [data-envelope]:not([hidden]):not(.is-opening) ~ main .cover-typing {
+    animation: none;
+    clip-path: inset(0 100% 0 0);
+  }
+  [data-envelope].is-opening ~ main .cover-typing {
+    animation: cover-type 4.2s steps(14, start) var(--envelope-release-delay) backwards;
+  }
+}
 #cover-title:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   .envelope-intro * { transition: none; }
@@ -1222,7 +1261,7 @@ html.envelope-active, html.envelope-active body { overflow: hidden; }
 .static-dialog[hidden]{display:none}
 .static-dialog .dialog{position:relative}
 .static-gallery-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:54px 16px 70px}
-</style></head><body><div class="envelope-intro" data-envelope="" hidden=""><button class="envelope-trigger" data-envelope-open="" type="button" aria-label="봉투를 열어 청첩장 보기"><span class="envelope-fold" aria-hidden="true"><span class="envelope-leaf envelope-left"></span><span class="envelope-leaf envelope-right"></span><span class="envelope-cartouche"></span></span><span class="envelope-prompt" lang="en" aria-hidden="true">Tap to open</span></button></div><main class="invitation-shell"><section class="cover" aria-labelledby="cover-title"><picture class="cover-stamp-2-picture"><source type="image/avif" srcSet="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-580.5a95cea9.avif 580w, https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-870.c2eaf8fb.avif 870w" sizes="(max-width: 346px) calc(100vw - 56px), 290px"/><source type="image/webp" srcSet="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-580.93de4f30.webp 580w, https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-870.ccc9db9e.webp 870w" sizes="(max-width: 346px) calc(100vw - 56px), 290px"/><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-580.93de4f30.webp" alt="레이스 테두리 안의 곽재현과 정연수 웨딩 사진" width="1165" height="1350" loading="eager" fetchPriority="high" decoding="async" class="cover-stamp-2-photo" data-nimg="1"/></picture><div class="stamp-heading"><p><span class="cover-typing">THE WEDDING OF</span></p><h1 id="cover-title" tabindex="-1">정연수<i>&amp;</i>곽재현</h1><p class="stamp-date">FEBRUARY<!-- --> <!-- -->14<!-- -->, <!-- -->2027<br/>PM 12:30</p></div></section><section class="section reveal" id="invitation"><h2>초대합니다</h2><div class="section-rule" aria-hidden="true"></div><div class="invitation-copy"><p>첫 만남엔 선후배로,
+</style></head><body><div class="envelope-intro" data-envelope="" hidden=""><button class="envelope-trigger" data-envelope-open="" type="button" aria-label="봉투를 열어 청첩장 보기"><span class="envelope-fold" aria-hidden="true"><span class="envelope-leaf envelope-left"></span><span class="envelope-leaf envelope-right"></span><span class="envelope-cartouche"></span></span><span class="envelope-prompt" lang="en" aria-hidden="true">Tap to open</span></button></div><main class="invitation-shell"><section class="cover" aria-labelledby="cover-title"><div class="lace-portrait"><div class="lace-portrait-opening"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0100.webp" alt="정연수와 곽재현의 웨딩 사진" width="3729" height="5593" loading="eager" fetchPriority="high" decoding="async" class="lace-portrait-photo" data-nimg="1"/></div></div><div class="stamp-heading"><p><span class="cover-typing">THE WEDDING OF</span></p><h1 id="cover-title" tabindex="-1">정연수<i>&amp;</i>곽재현</h1><p class="stamp-date">FEBRUARY<!-- --> <!-- -->14<!-- -->, <!-- -->2027<br/>PM 12:30</p></div></section><section class="section reveal" id="invitation"><h2>초대합니다</h2><div class="section-rule" aria-hidden="true"></div><div class="invitation-copy"><p>첫 만남엔 선후배로,
 두 번째 만남엔 친구로,
 그 후에는 연인으로 10년을 만났습니다.
 

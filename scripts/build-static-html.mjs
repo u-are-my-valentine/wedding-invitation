@@ -7,8 +7,6 @@ const imageOrigin = (process.env.WEDDING_IMAGE_ORIGIN ?? "https://warm-wedding-i
 const sourceHtml = resolve("/tmp/wedding-rendered.html");
 const outputDir = resolve(root, "docs");
 const outputHtml = resolve(outputDir, "index.html");
-const coverImage = JSON.parse(await readFile(resolve(root, "config/cover-image.json"), "utf8"));
-const coverPreload = `<link rel="preload" as="image" type="image/avif" imagesrcset="${coverImage.avifSrcSet.replaceAll('/images/', `${imageOrigin}/images/`)}" imagesizes="${coverImage.sizes}" fetchpriority="high">`;
 const css = (await readFile(resolve(root, "app/globals.css"), "utf8")) + "\n" + (await readFile(resolve(root, "app/design.css"), "utf8")).replaceAll('/art/', './art/').replaceAll('/fonts/', './fonts/').replaceAll('/images/', './images/');
 let html = await readFile(sourceHtml, "utf8");
 
@@ -31,7 +29,7 @@ html = html
   .replaceAll('srcset="/images/', 'srcset="./images/')
   .replaceAll(', /images/', ', ./images/')
   .replaceAll('src="/images/', 'src="./images/')
-  .replace("</head>", `${imageOrigin ? `<link rel="preconnect" href="${imageOrigin}">` : ""}${coverPreload}<style>${css}</style></head>`);
+  .replace("</head>", `${imageOrigin ? `<link rel="preconnect" href="${imageOrigin}">` : ""}<style>${css}</style></head>`);
 
 const extraStyles = `
 <style>
@@ -248,7 +246,7 @@ const script = `
 html = html
   .replace("</head>", `${extraStyles}</head>`)
   .replace("</body>", `${dialogs}${script}</body>`)
-  .replaceAll("./images/", `${imageOrigin}/images/`);
+  .replaceAll("./images/", `${imageOrigin || "."}/images/`);
 
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
