@@ -26,3 +26,9 @@ deliverables/
 
 # Keep cover media out of Git
 *.[mM][pP]4
+
+# Generated invitation artwork; personal photos remain ignored.
+!/public/art/white-linen.webp
+!/public/art/envelope-cartouche.webp
+!/docs/art/white-linen.webp
+!/docs/art/envelope-cartouche.webp

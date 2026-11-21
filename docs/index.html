@@ -1150,12 +1150,79 @@ footer > span { display: none; }
   .family-line strong { font-size: 16px; }
   .closing { width: calc(100% - 48px); }
 }
+
+/* Cloth-covered gatefold. Each leaf shows one half of the same woven panel. */
+html.envelope-active, html.envelope-active body { overflow: hidden; }
+.envelope-intro {
+  --linen-dye: #f6f4ef;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  max-width: 480px;
+  margin-inline: auto;
+  isolation: isolate;
+  overflow: hidden;
+}
+.envelope-intro[hidden] { display: none; }
+@media (max-width: 767px), (pointer: coarse) and (max-height: 600px) {
+  .envelope-intro { max-width: none; }
+}
+.envelope-trigger {
+  position: relative; display: block;
+  width: 100%; height: 100%; padding: 0; border: 0;
+  background: transparent; cursor: pointer;
+}
+.envelope-trigger:focus-visible { outline-offset: -5px; }
+.envelope-fold { position: absolute; inset: 0; perspective: 1100px; }
+.envelope-leaf {
+  position: absolute; inset-block: 0; width: 50%;
+  overflow: hidden; backface-visibility: hidden; background: var(--linen-dye);
+  transition: transform 5.4s .55s cubic-bezier(.30,.12,.52,1);
+}
+.envelope-leaf::before {
+  content: ""; position: absolute; inset-block: 0; width: 200%;
+  background: var(--linen-dye) url("./art/white-linen.webp") center / 320px 320px repeat;
+}
+.envelope-left, .envelope-left::before { left: 0; }
+.envelope-right, .envelope-right::before { right: 0; }
+.envelope-left { transform-origin: left center; }
+.envelope-right { transform-origin: right center; }
+.envelope-leaf::after { content: ""; position: absolute; inset: 0; }
+.envelope-left::after {
+  background: linear-gradient(to left, #656058aa, #948d804f 1%, #aaa39717 5%, transparent 19%);
+}
+.envelope-right::after {
+  background: linear-gradient(to right, #635f58bb, #fffdfbbb 1.3%, #fffdfb33 5%, transparent 21%);
+}
+.envelope-cartouche {
+  position: absolute; top: 50.5%; left: 50%;
+  width: min(45%, 32svh); aspect-ratio: 0.71;
+  transform: translate(-50%, -50%);
+  background: url("./art/envelope-cartouche.webp") center / contain no-repeat;
+  filter: drop-shadow(-3px 5px 4px #302b1f69) drop-shadow(-1px 1px 1px #211f1640);
+  transition: transform 1s ease-in-out, opacity .9s .08s ease-in-out;
+}
+.envelope-prompt {
+  position: absolute; left: 0; right: 0; bottom: max(8%, calc(env(safe-area-inset-bottom) + 18px));
+  color: #635c52; text-shadow: 0 1px 1px #fff9;
+  font: 12px/1.5 var(--calendar); letter-spacing: .35em; text-align: center; text-transform: uppercase;
+  transition: opacity .55s ease-out;
+}
+.is-opening .envelope-prompt { opacity: 0; }
+.is-opening .envelope-cartouche { opacity: 0; transform: translate(-50%, -54%) scale(1.035); }
+.is-opening .envelope-left { transform: translateX(-8%) rotateY(-90deg); }
+.is-opening .envelope-right { transform: translateX(8%) rotateY(90deg); }
+.envelope-active .cover-typing { animation-play-state: paused; }
+#cover-title:focus { outline: none; }
+@media (prefers-reduced-motion: reduce) {
+  .envelope-intro * { transition: none; }
+}
 </style>
 <style>
 .static-dialog[hidden]{display:none}
 .static-dialog .dialog{position:relative}
 .static-gallery-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:54px 16px 70px}
-</style></head><body><main class="invitation-shell"><section class="cover" aria-labelledby="cover-title"><picture class="cover-stamp-2-picture"><source type="image/avif" srcSet="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-580.5a95cea9.avif 580w, https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-870.c2eaf8fb.avif 870w" sizes="(max-width: 346px) calc(100vw - 56px), 290px"/><source type="image/webp" srcSet="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-580.93de4f30.webp 580w, https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-870.ccc9db9e.webp 870w" sizes="(max-width: 346px) calc(100vw - 56px), 290px"/><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-580.93de4f30.webp" alt="레이스 테두리 안의 곽재현과 정연수 웨딩 사진" width="1165" height="1350" loading="eager" fetchPriority="high" decoding="async" class="cover-stamp-2-photo" data-nimg="1"/></picture><div class="stamp-heading"><p><span class="cover-typing">THE WEDDING OF</span></p><h1 id="cover-title">정연수<i>&amp;</i>곽재현</h1><p class="stamp-date">FEBRUARY<!-- --> <!-- -->14<!-- -->, <!-- -->2027<br/>PM 12:30</p></div></section><section class="section reveal" id="invitation"><h2>초대합니다</h2><div class="section-rule" aria-hidden="true"></div><div class="invitation-copy"><p>첫 만남엔 선후배로,
+</style></head><body><div class="envelope-intro" data-envelope="" hidden=""><button class="envelope-trigger" data-envelope-open="" type="button" aria-label="봉투를 열어 청첩장 보기"><span class="envelope-fold" aria-hidden="true"><span class="envelope-leaf envelope-left"></span><span class="envelope-leaf envelope-right"></span><span class="envelope-cartouche"></span></span><span class="envelope-prompt" lang="en" aria-hidden="true">Tap to open</span></button></div><main class="invitation-shell"><section class="cover" aria-labelledby="cover-title"><picture class="cover-stamp-2-picture"><source type="image/avif" srcSet="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-580.5a95cea9.avif 580w, https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-870.c2eaf8fb.avif 870w" sizes="(max-width: 346px) calc(100vw - 56px), 290px"/><source type="image/webp" srcSet="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-580.93de4f30.webp 580w, https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-870.ccc9db9e.webp 870w" sizes="(max-width: 346px) calc(100vw - 56px), 290px"/><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/cover-lace-580.93de4f30.webp" alt="레이스 테두리 안의 곽재현과 정연수 웨딩 사진" width="1165" height="1350" loading="eager" fetchPriority="high" decoding="async" class="cover-stamp-2-photo" data-nimg="1"/></picture><div class="stamp-heading"><p><span class="cover-typing">THE WEDDING OF</span></p><h1 id="cover-title" tabindex="-1">정연수<i>&amp;</i>곽재현</h1><p class="stamp-date">FEBRUARY<!-- --> <!-- -->14<!-- -->, <!-- -->2027<br/>PM 12:30</p></div></section><section class="section reveal" id="invitation"><h2>초대합니다</h2><div class="section-rule" aria-hidden="true"></div><div class="invitation-copy"><p>첫 만남엔 선후배로,
 두 번째 만남엔 친구로,
 그 후에는 연인으로 10년을 만났습니다.
 
@@ -1252,7 +1319,46 @@ footer > span { display: none; }
     };
 }
 
+  function setupEnvelopeIntro() {
+    const envelope = document.querySelector("[data-envelope]");
+    const button = envelope?.querySelector("[data-envelope-open]");
+    const main = document.querySelector("main.invitation-shell");
+    if (!envelope || !button || !main || window.location.hash || window.scrollY > 2)
+        return;
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let disposed = false;
+    const dismiss = () => {
+        envelope.hidden = true;
+        main.inert = false;
+        document.documentElement.classList.remove("envelope-active");
+    };
+    const finishOpening = () => {
+        dismiss();
+        document.getElementById("cover-title")?.focus({ preventScroll: true });
+    };
+    const open = async () => {
+        envelope.classList.add("is-opening");
+        if (!motion.matches) {
+            const transitions = envelope.getAnimations({ subtree: true });
+            await Promise.allSettled(transitions.map(transition => transition.finished));
+        }
+        if (!disposed)
+            finishOpening();
+    };
+    main.inert = true;
+    document.documentElement.classList.add("envelope-active");
+    envelope.classList.remove("is-opening");
+    envelope.hidden = false;
+    button.addEventListener("click", open, { once: true });
+    return () => {
+        disposed = true;
+        button.removeEventListener("click", open);
+        dismiss();
+    };
+}
+
   setupCoverScroll();
+  setupEnvelopeIntro();
   const gallery = ["0100","0177","0316","0392","0463","0644","0807","0922","1133","1186","1330","1420","1439","1471","1499"];
   let galleryIndex = 0;
   let touchStartX = null;

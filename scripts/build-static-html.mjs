@@ -9,7 +9,7 @@ const outputDir = resolve(root, "docs");
 const outputHtml = resolve(outputDir, "index.html");
 const coverImage = JSON.parse(await readFile(resolve(root, "config/cover-image.json"), "utf8"));
 const coverPreload = `<link rel="preload" as="image" type="image/avif" imagesrcset="${coverImage.avifSrcSet.replaceAll('/images/', `${imageOrigin}/images/`)}" imagesizes="${coverImage.sizes}" fetchpriority="high">`;
-const css = (await readFile(resolve(root, "app/globals.css"), "utf8")) + "\n" + (await readFile(resolve(root, "app/design.css"), "utf8")).replaceAll('/fonts/', './fonts/').replaceAll('/images/', './images/');
+const css = (await readFile(resolve(root, "app/globals.css"), "utf8")) + "\n" + (await readFile(resolve(root, "app/design.css"), "utf8")).replaceAll('/art/', './art/').replaceAll('/fonts/', './fonts/').replaceAll('/images/', './images/');
 let html = await readFile(sourceHtml, "utf8");
 
 html = html.slice(0, html.indexOf("</html>") + "</html>".length);
@@ -56,13 +56,20 @@ const dialogs = `
   </div>
 </div>`;
 
-const coverScroll = ts.transpileModule(await readFile(resolve(root, "lib/cover-scroll.ts"), "utf8"), { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText.replace("export function", "function");
+async function inlineHelper(name) {
+  const source = await readFile(resolve(root, `lib/${name}.ts`), "utf8");
+  return ts.transpileModule(source, {
+    compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
+  }).outputText.replace("export function", "function");
+}
 
 const script = `
 <script>
 (() => {
-  ${coverScroll}
+  ${await inlineHelper("cover-scroll")}
+  ${await inlineHelper("envelope")}
   setupCoverScroll();
+  setupEnvelopeIntro();
   const gallery = ${JSON.stringify([
     "0100","0177","0316","0392","0463","0644","0807","0922",
     "1133","1186","1330","1420","1439","1471","1499",
@@ -245,6 +252,7 @@ html = html
 
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
+await cp(resolve(root, "public/art"), resolve(outputDir, "art"), { recursive: true });
 await cp(resolve(root, "public/fonts"), resolve(outputDir, "fonts"), { recursive: true });
 if (!imageOrigin) await cp(resolve(root, "public/images"), resolve(outputDir, "images"), { recursive: true });
 await writeFile(resolve(outputDir, ".nojekyll"), "# Serve this directory as plain static files.\n");

@@ -17,6 +17,7 @@ import {
   getMonthCalendar,
   getWeddingDate,
 } from "@/lib/wedding-date";
+import { setupEnvelopeIntro } from "@/lib/envelope";
 import { setupCoverScroll } from "@/lib/cover-scroll";
 import type { Account, Person } from "@/types/wedding";
 
@@ -209,6 +210,7 @@ export default function WeddingInvitation() {
     };
   }, []);
   useEffect(setupCoverScroll, []);
+  useEffect(setupEnvelopeIntro, []);
   const touchStartX = useRef<number | null>(null);
 
   const closeGallery = useCallback(() => setGalleryIndex(null), []);
@@ -285,6 +287,16 @@ export default function WeddingInvitation() {
 
   return (
     <>
+      <div className="envelope-intro" data-envelope="" hidden>
+        <button className="envelope-trigger" data-envelope-open="" type="button" aria-label="봉투를 열어 청첩장 보기">
+          <span className="envelope-fold" aria-hidden="true">
+            <span className="envelope-leaf envelope-left" />
+            <span className="envelope-leaf envelope-right" />
+            <span className="envelope-cartouche" />
+          </span>
+          <span className="envelope-prompt" lang="en" aria-hidden="true">Tap to open</span>
+        </button>
+      </div>
       <main className="invitation-shell">
         <section className="cover" aria-labelledby="cover-title">
           <picture className="cover-stamp-2-picture">
@@ -303,7 +315,7 @@ export default function WeddingInvitation() {
           </picture>
           <div className="stamp-heading">
             <p><span className="cover-typing">THE WEDDING OF</span></p>
-            <h1 id="cover-title">{config.couple.bride.name}<i>&amp;</i>{config.couple.groom.name}</h1>
+            <h1 id="cover-title" tabIndex={-1}>{config.couple.bride.name}<i>&amp;</i>{config.couple.groom.name}</h1>
             <p className="stamp-date">{monthEnglish.toUpperCase()} {weddingDay}, {weddingYear}<br />{coverTime}</p>
           </div>
         </section>
