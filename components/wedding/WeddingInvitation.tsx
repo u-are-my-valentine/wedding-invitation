@@ -291,7 +291,13 @@ export default function WeddingInvitation() {
           <span className="envelope-fold" aria-hidden="true">
             <span className="envelope-leaf envelope-left" />
             <span className="envelope-leaf envelope-right" />
-            <span className="envelope-cartouche" />
+            <span className="envelope-cartouche">
+              <span className="envelope-monogram">
+                <span className="monogram-y">Y</span>
+                <span className="monogram-amp">&amp;</span>
+                <span className="monogram-j">J</span>
+              </span>
+            </span>
           </span>
           <span className="envelope-prompt" lang="en" aria-hidden="true">Tap to open</span>
         </button>

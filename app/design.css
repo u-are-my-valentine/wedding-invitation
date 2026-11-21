@@ -47,8 +47,15 @@
   unicode-range: U+20-7E,U+B7,U+D7,U+2039-203A;
 }
 /* End UI font subsets. */
+@font-face {
+  font-family: "Baskervville Monogram";
+  src: url("/fonts/Baskervville-MonogramItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 450;
+  font-display: swap;
+}
 :root {
-  --envelope-release-delay: .55s;
+  --envelope-release-delay: .458s;
   --paper: #f0eee9;
   --paper-deep: #e8e5df;
   --ink: #242321;
@@ -86,7 +93,7 @@ body { font-family: var(--serif); }
 }
 .lace-portrait {
   position: relative;
-  width: min(91.2%, 301px);
+  width: min(73%, 241px);
   aspect-ratio: 10 / 13;
 }
 .lace-portrait::before {
@@ -96,8 +103,8 @@ body { font-family: var(--serif); }
   inset: 0;
   pointer-events: none;
   background:
-    repeating-linear-gradient(54deg, transparent 0 1.65px, rgb(255 255 255 / 72%) 1.9px 2.15px, transparent 2.4px),
-    repeating-linear-gradient(-54deg, transparent 0 1.65px, rgb(255 255 255 / 60%) 1.9px 2.15px, transparent 2.4px);
+    repeating-linear-gradient(54deg, transparent 0 1.32px, rgb(255 255 255 / 72%) 1.52px 1.72px, transparent 1.92px),
+    repeating-linear-gradient(-54deg, transparent 0 1.32px, rgb(255 255 255 / 60%) 1.52px 1.72px, transparent 1.92px);
   -webkit-mask: var(--openwork-mask);
   mask: var(--openwork-mask);
 }
@@ -307,7 +314,7 @@ html.envelope-active, html.envelope-active body { overflow: hidden; }
 .envelope-leaf {
   position: absolute; inset-block: 0; width: 50%;
   overflow: hidden; backface-visibility: hidden; background: var(--linen-dye);
-  transition: transform 5.4s var(--envelope-release-delay) cubic-bezier(.30,.12,.52,1);
+  transition: transform 4.5s var(--envelope-release-delay) cubic-bezier(.30,.12,.52,1);
 }
 .envelope-leaf::before {
   content: ""; position: absolute; inset-block: 0; width: 200%;
@@ -327,16 +334,38 @@ html.envelope-active, html.envelope-active body { overflow: hidden; }
 .envelope-cartouche {
   position: absolute; top: 50.5%; left: 50%;
   width: min(45%, 32svh); aspect-ratio: 0.71;
+  container-type: inline-size;
   transform: translate(-50%, -50%);
-  background: url("/art/envelope-cartouche.webp") center / contain no-repeat;
+  background: url("/art/envelope-cartouche-blank.webp") center / contain no-repeat;
   filter: drop-shadow(-3px 5px 4px #302b1f69) drop-shadow(-1px 1px 1px #211f1640);
-  transition: transform 1s ease-in-out, opacity .9s .08s ease-in-out;
+  transition: transform .833s ease-in-out, opacity .75s .067s ease-in-out;
 }
+.envelope-monogram {
+  position: absolute;
+  inset: 0;
+  font: italic 450 42px/1 "Baskervville Monogram", Georgia, serif;
+  font-size: 24.5cqw;
+}
+.envelope-monogram > span {
+  position: absolute;
+  padding-inline: .2em;
+  transform: translate(-50%, -50%);
+  color: #8d672e;
+  background: linear-gradient(115deg, #805822 8%, #ad8541 39%, #bc964e 51%, #8c632b 74%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 .5px .2px #fff1c8);
+}
+/* Center each ink outline on the diagonal, accounting for italic overhangs. */
+.monogram-y { left: 35.5%; top: 40.4%; }
+.monogram-amp { left: 50%; top: 47%; font-size: .54em; }
+.monogram-j { left: 59.9%; top: 53.6%; }
 .envelope-prompt {
   position: absolute; left: 0; right: 0; bottom: max(8%, calc(env(safe-area-inset-bottom) + 18px));
   color: #635c52; text-shadow: 0 1px 1px #fff9;
   font: 12px/1.5 var(--calendar); letter-spacing: .35em; text-align: center; text-transform: uppercase;
-  transition: opacity .55s ease-out;
+  transition: opacity var(--envelope-release-delay) ease-out;
 }
 .is-opening .envelope-prompt { opacity: 0; }
 .is-opening .envelope-cartouche { opacity: 0; transform: translate(-50%, -54%) scale(1.035); }
@@ -348,7 +377,7 @@ html.envelope-active, html.envelope-active body { overflow: hidden; }
     clip-path: inset(0 100% 0 0);
   }
   [data-envelope].is-opening ~ main .cover-typing {
-    animation: cover-type 4.2s steps(14, start) var(--envelope-release-delay) backwards;
+    animation: cover-type 3.5s steps(14, start) var(--envelope-release-delay) backwards;
   }
 }
 #cover-title:focus { outline: none; }
