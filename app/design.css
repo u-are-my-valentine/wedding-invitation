@@ -225,7 +225,7 @@ body { font-family: var(--serif); }
 .gallery-slide:hover img { transform: none; }
 .gallery-slide img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .gallery-navigation { display: flex; align-items: center; justify-content: center; gap: 28px; margin-top: 18px; padding-top: 0; border: 0; }
-.gallery-step { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid #845c5938; border-radius: 50%; background: transparent; color: #785451; cursor: pointer; }
+.gallery-step { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; color: #785451; cursor: pointer; }
 .gallery-step span { position: relative; display: block; width: 18px; height: 1px; background: currentColor; }
 .gallery-step span::after { content: ""; position: absolute; top: -3px; right: 0; width: 7px; height: 7px; border-top: 1px solid currentColor; border-right: 1px solid currentColor; transform: rotate(45deg); }
 .gallery-step[data-direction="-1"] span { transform: rotate(180deg); }
