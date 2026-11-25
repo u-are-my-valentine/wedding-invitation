@@ -25,6 +25,7 @@ html = html
     "./images/wedding/$1.webp",
   )
   .replace(/<img\b[^>]*>/gi, tag => tag.replace(/ srcset="[^"]*"/gi, ""))
+  .replaceAll('src="/art/', 'src="./art/')
   .replaceAll('srcSet="/images/', 'srcSet="./images/')
   .replaceAll('srcset="/images/', 'srcset="./images/')
   .replaceAll(', /images/', ', ./images/')
