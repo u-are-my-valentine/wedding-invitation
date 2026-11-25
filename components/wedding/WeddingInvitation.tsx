@@ -291,15 +291,8 @@ export default function WeddingInvitation() {
           <span className="envelope-fold" aria-hidden="true">
             <span className="envelope-leaf envelope-left" />
             <span className="envelope-leaf envelope-right" />
-            <span className="envelope-cartouche">
-              <span className="envelope-monogram">
-                <span className="monogram-y">Y</span>
-                <span className="monogram-amp">&amp;</span>
-                <span className="monogram-j">J</span>
-              </span>
-            </span>
+            <span className="envelope-cartouche" />
           </span>
-          <span className="envelope-prompt" lang="en" aria-hidden="true">Tap to open</span>
         </button>
       </div>
       <main className="invitation-shell">
@@ -331,6 +324,7 @@ export default function WeddingInvitation() {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
+          <Image className="invitation-flower" src="/art/chamomile-pencil.png" alt="" width={136} height={136} unoptimized />
           <div className="family">
             <FamilyLine person={config.couple.bride} role="딸" />
             <FamilyLine person={config.couple.groom} role="아들" />

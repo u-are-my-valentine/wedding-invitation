@@ -62,8 +62,7 @@ export const weddingConfig: WeddingConfig = {
       { label: "아버지", holder: "곽원영", bank: "우리은행", number: "1002-000-000000" },
     ],
     bride: [
-      { label: "신부", holder: "정연수", bank: "하나은행", number: "110-000-000000" },
-      { label: "아버지", holder: "정재현", bank: "국민은행", number: "000000-00-000000" },
+      { label: "신부", holder: "정연수", bank: "하나은행", number: "750-910180-03707" },
     ],
   },
   features: { rsvp: false, guestbook: false, music: false },
