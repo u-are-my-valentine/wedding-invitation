@@ -3,11 +3,7 @@
 import Image from "next/image";
 import {
   type ReactNode,
-  type TouchEvent,
-  useCallback,
   useEffect,
-  useId,
-  useRef,
   useState,
 } from "react";
 import { weddingConfig as config } from "@/config/wedding";
@@ -16,6 +12,7 @@ import {
   getMonthCalendar,
   getWeddingDate,
 } from "@/lib/wedding-date";
+import { setupGallery } from "@/lib/gallery";
 import { setupEnvelopeIntro } from "@/lib/envelope";
 import { setupCoverScroll } from "@/lib/cover-scroll";
 import type { Account, Person } from "@/types/wedding";
@@ -67,7 +64,7 @@ function FamilyLine({ person, role }: { person: Person; role: "아들" | "딸" }
       <span>
         {parents.map((parent, index) => (
           <span key={parent?.name}>
-            {index > 0 && " · "}
+            {index > 0 && <span className="parent-separator">·</span>}
             {parent?.deceased && <span className="deceased">故 </span>}
             {parent?.name}
           </span>
@@ -76,81 +73,6 @@ function FamilyLine({ person, role }: { person: Person; role: "아들" | "딸" }
       {parents.length > 0 && <span className="relation">의 {role}</span>}
       <strong>{person.name}</strong>
     </p>
-  );
-}
-
-function AccessibleDialog({
-  title,
-  open,
-  onClose,
-  children,
-  className = "",
-}: {
-  title: string;
-  open: boolean;
-  onClose: () => void;
-  children: ReactNode;
-  className?: string;
-}) {
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const titleId = useId();
-
-  useEffect(() => {
-    if (!open) return;
-    const previousFocus = document.activeElement as HTMLElement | null;
-    const dialog = dialogRef.current;
-    dialog?.focus();
-    document.body.classList.add("modal-open");
-
-    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-      if (event.key !== "Tab" || !dialog) return;
-      const focusable = Array.from(
-        dialog.querySelectorAll<HTMLElement>(
-          'button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])',
-        ),
-      );
-      if (focusable.length === 0) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.classList.remove("modal-open");
-      previousFocus?.focus({ preventScroll: true });
-    };
-  }, [onClose, open]);
-
-  if (!open) return null;
-
-  return (
-    <div className="dialog-backdrop" onMouseDown={onClose}>
-      <div
-        aria-labelledby={titleId}
-        aria-modal="true"
-        className={`dialog ${className}`}
-        onMouseDown={(event) => event.stopPropagation()}
-        ref={dialogRef}
-        role="dialog"
-        tabIndex={-1}
-      >
-        <div className="dialog-heading">
-          <h2 id={titleId}>{title}</h2>
-          <button aria-label={`${title} 닫기`} className="icon-button" onClick={onClose}>
-            ×
-          </button>
-        </div>
-        {children}
-      </div>
-    </div>
   );
 }
 
@@ -189,9 +111,6 @@ function AccountGroup({
 }
 
 export default function WeddingInvitation() {
-  const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
-  const [gallerySlide, setGallerySlide] = useState(0);
-  const galleryStripRef = useRef<HTMLDivElement>(null);
   const [accountSide, setAccountSide] = useState<"groom" | "bride" | null>(null);
   const [toast, setToast] = useState("");
   const [now, setNow] = useState<number | null>(null);
@@ -210,39 +129,12 @@ export default function WeddingInvitation() {
   }, []);
   useEffect(setupCoverScroll, []);
   useEffect(setupEnvelopeIntro, []);
-  const touchStartX = useRef<number | null>(null);
-
-  const closeGallery = useCallback(() => setGalleryIndex(null), []);
-  const scrollGallery = (direction: number) => {
-    const strip = galleryStripRef.current;
-    if (!strip) return;
-    const index = Math.round(strip.scrollLeft / strip.clientWidth);
-    const next = (index + direction + config.gallery.length) % config.gallery.length;
-    const wraps = index + direction < 0 || index + direction >= config.gallery.length;
-    strip.scrollTo({ left: next * strip.clientWidth, behavior: wraps || window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
-  };
-  const moveGallery = (direction: number) => {
-    setGalleryIndex((current) => {
-      if (current === null) return null;
-      return (current + direction + config.gallery.length) % config.gallery.length;
-    });
-  };
-
+  useEffect(setupGallery, []);
   useEffect(() => {
     if (!toast) return;
     const timer = window.setTimeout(() => setToast(""), 2200);
     return () => window.clearTimeout(timer);
   }, [toast]);
-
-  useEffect(() => {
-    if (galleryIndex === null) return;
-    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "ArrowLeft") moveGallery(-1);
-      if (event.key === "ArrowRight") moveGallery(1);
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [galleryIndex]);
 
   async function copy(value: string, message: string) {
     try {
@@ -270,18 +162,6 @@ export default function WeddingInvitation() {
         await copy(window.location.href, "청첩장 링크가 복사되었습니다.");
       }
     }
-  }
-
-  function handleGalleryTouchStart(event: TouchEvent) {
-    touchStartX.current = event.touches[0]?.clientX ?? null;
-  }
-
-  function handleGalleryTouchEnd(event: TouchEvent) {
-    if (touchStartX.current === null) return;
-    const endX = event.changedTouches[0]?.clientX ?? touchStartX.current;
-    const distance = endX - touchStartX.current;
-    if (Math.abs(distance) > 50) moveGallery(distance > 0 ? -1 : 1);
-    touchStartX.current = null;
   }
 
   return (
@@ -324,7 +204,7 @@ export default function WeddingInvitation() {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <Image className="invitation-flower" src="/art/chamomile-pencil.png" alt="" width={136} height={136} unoptimized />
+          <Image className="invitation-flower" src="/art/wildflower-posy.webp" alt="" width={136} height={164} unoptimized />
           <div className="family">
             <FamilyLine person={config.couple.bride} role="딸" />
             <FamilyLine person={config.couple.groom} role="아들" />
@@ -366,18 +246,22 @@ export default function WeddingInvitation() {
         </Section>
 
         <Section id="gallery" title="GALLERY">
-          <div className="gallery-strip" ref={galleryStripRef} role="region" aria-label="웨딩 사진 목록" tabIndex={0} onScroll={(event) => setGallerySlide(Math.max(0, Math.min(config.gallery.length - 1, Math.round(event.currentTarget.scrollLeft / event.currentTarget.clientWidth))))}>
-            {config.gallery.map((photo, index) => (
-              <button className="gallery-item gallery-slide" key={photo.src} aria-label={`웨딩 사진 ${index + 1} / ${config.gallery.length} 크게 보기`} data-gallery-index={index} onClick={() => setGalleryIndex(index)}>
-                <Image alt={photo.alt} width={photo.width} height={photo.height} unoptimized sizes="(max-width: 480px) 84vw, 416px" src={photo.src} />
-              </button>
-            ))}
+          <div className="gallery-frame">
+            <div className="gallery-strip" role="region" aria-label="웨딩 사진 목록" tabIndex={0}>
+              {config.gallery.map((photo) => (
+                <div className="gallery-item gallery-slide" key={photo.src}>
+                  <Image alt={photo.alt} width={photo.width} height={photo.height} unoptimized sizes="(max-width: 480px) 84vw, 416px" src={photo.src} />
+                  <button type="button" className="gallery-pick" aria-label={`${photo.alt} 한 장 보기`} />
+                </div>
+              ))}
+            </div>
           </div>
           <div className="gallery-navigation">
-            <button className="gallery-step" data-direction="-1" aria-label="이전 사진 보기" onClick={() => scrollGallery(-1)}><span aria-hidden="true" /></button>
-            <p className="gallery-position" aria-live="polite" aria-atomic="true"><span>{String(gallerySlide + 1).padStart(2, "0")}</span><i aria-hidden="true">/</i>{String(config.gallery.length).padStart(2, "0")}</p>
-            <button className="gallery-step" data-direction="1" aria-label="다음 사진 보기" onClick={() => scrollGallery(1)}><span aria-hidden="true" /></button>
+            <button className="gallery-step" data-direction="-1" aria-label="이전 사진 보기"><span aria-hidden="true" /></button>
+            <p className="gallery-position" aria-live="polite" aria-atomic="true"><span>01</span><i aria-hidden="true">/</i>{String(config.gallery.length).padStart(2, "0")}</p>
+            <button className="gallery-step" data-direction="1" aria-label="다음 사진 보기"><span aria-hidden="true" /></button>
           </div>
+          <button type="button" className="gallery-back" aria-label="뒤로, 사진 전체 보기로 돌아가기">뒤로</button>
         </Section>
 
         <Section id="location" title="오시는 길">
@@ -455,34 +339,6 @@ export default function WeddingInvitation() {
           <span>{config.couple.groom.name} &amp; {config.couple.bride.name}의 결혼식</span>
         </footer>
       </main>
-
-      <AccessibleDialog
-        className="gallery-dialog"
-        onClose={closeGallery}
-        open={galleryIndex !== null}
-        title="사진 크게 보기"
-      >
-        {galleryIndex !== null && (
-          <div
-            className="gallery-viewer"
-            onTouchEnd={handleGalleryTouchEnd}
-            onTouchStart={handleGalleryTouchStart}
-          >
-            <Image
-              alt={config.gallery[galleryIndex].alt}
-              fill
-              priority
-              unoptimized
-              sizes="100vw"
-              style={{ objectFit: "contain" }}
-              src={config.gallery[galleryIndex].src}
-            />
-            <button aria-label="이전 사진" className="gallery-prev" onClick={() => moveGallery(-1)}>‹</button>
-            <button aria-label="다음 사진" className="gallery-next" onClick={() => moveGallery(1)}>›</button>
-            <span className="gallery-count">{galleryIndex + 1} / {config.gallery.length}</span>
-          </div>
-        )}
-      </AccessibleDialog>
 
       <div aria-atomic="true" aria-live="polite" className={`toast ${toast ? "show" : ""}`} role="status">
         {toast}

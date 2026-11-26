@@ -32,29 +32,6 @@ html = html
   .replaceAll('src="/images/', 'src="./images/')
   .replace("</head>", `${imageOrigin ? `<link rel="preconnect" href="${imageOrigin}">` : ""}<style>${css}</style></head>`);
 
-const extraStyles = `
-<style>
-.static-dialog[hidden]{display:none}
-.static-dialog .dialog{position:relative}
-.static-gallery-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:54px 16px 70px}
-</style>`;
-
-const dialogs = `
-<div class="dialog-backdrop static-dialog" id="gallery-dialog" hidden>
-  <div class="dialog gallery-dialog" role="dialog" aria-modal="true" aria-labelledby="gallery-title" tabindex="-1">
-    <div class="dialog-heading">
-      <h2 id="gallery-title">사진 크게 보기</h2>
-      <button class="icon-button static-close" aria-label="사진 크게 보기 닫기">×</button>
-    </div>
-    <div class="gallery-viewer">
-      <img class="static-gallery-image" alt="">
-      <button class="gallery-prev" aria-label="이전 사진">‹</button>
-      <button class="gallery-next" aria-label="다음 사진">›</button>
-      <span class="gallery-count"></span>
-    </div>
-  </div>
-</div>`;
-
 async function inlineHelper(name) {
   const source = await readFile(resolve(root, `lib/${name}.ts`), "utf8");
   return ts.transpileModule(source, {
@@ -69,18 +46,7 @@ const script = `
   ${await inlineHelper("envelope")}
   setupCoverScroll();
   setupEnvelopeIntro();
-  const gallery = ${JSON.stringify([
-    "0100","0177","0316","0392","0463","0644","0807","0922",
-    "1133","1186","1330","1420","1439","1471","1499",
-  ])};
-  let galleryIndex = 0;
-  let touchStartX = null;
-  let previousFocus = null;
   const toast = document.querySelector(".toast");
-  const galleryDialog = document.querySelector("#gallery-dialog");
-  const galleryImage = galleryDialog.querySelector(".static-gallery-image");
-  const galleryCount = galleryDialog.querySelector(".gallery-count");
-
   function showToast(message) {
     toast.textContent = message;
     toast.classList.add("show");
@@ -108,57 +74,8 @@ const script = `
     }
   }
 
-  function openDialog(dialog) {
-    previousFocus = document.activeElement;
-    dialog.hidden = false;
-    document.body.classList.add("modal-open");
-    dialog.querySelector(".dialog").focus();
-  }
-
-  function closeDialog(dialog) {
-    dialog.hidden = true;
-    document.body.classList.remove("modal-open");
-    if (previousFocus) previousFocus.focus({ preventScroll: true });
-  }
-
-  function renderGallery() {
-    galleryImage.src = "./images/wedding/" + gallery[galleryIndex] + ".webp";
-    galleryImage.alt = "곽재현과 정연수의 웨딩 사진 " + (galleryIndex + 1);
-    galleryCount.textContent = (galleryIndex + 1) + " / " + gallery.length;
-  }
-
-  function moveGallery(direction) {
-    galleryIndex = (galleryIndex + direction + gallery.length) % gallery.length;
-    renderGallery();
-  }
-
-  const galleryStrip = document.querySelector(".gallery-strip");
-  const galleryPosition = document.querySelector(".gallery-position span");
-  let visibleSlide = 0;
-  galleryStrip.addEventListener("scroll", () => {
-    const index = Math.max(0, Math.min(gallery.length - 1, Math.round(galleryStrip.scrollLeft / galleryStrip.clientWidth)));
-    if (index === visibleSlide) return;
-    visibleSlide = index;
-    galleryPosition.textContent = String(index + 1).padStart(2, "0");
-  }, { passive: true });
-  document.querySelectorAll(".gallery-step").forEach((button) => {
-    button.addEventListener("click", () => {
-      const index = Math.round(galleryStrip.scrollLeft / galleryStrip.clientWidth);
-      const direction = Number(button.dataset.direction);
-      const next = (index + direction + gallery.length) % gallery.length;
-      const wraps = index + direction < 0 || index + direction >= gallery.length;
-      galleryStrip.scrollTo({ left: next * galleryStrip.clientWidth, behavior: wraps || window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
-    });
-  });
-
-  document.querySelectorAll(".gallery-item").forEach((button, index) => {
-    button.addEventListener("click", () => {
-      galleryIndex = Number(button.dataset.galleryIndex ?? index);
-      renderGallery();
-      openDialog(galleryDialog);
-    });
-  });
-
+  ${await inlineHelper("gallery")}
+  setupGallery();
   document.querySelectorAll("button").forEach((button) => {
     const text = button.textContent.trim();
     if (text.endsWith("공유하기")) {
@@ -196,33 +113,6 @@ const script = `
     });
   });
 
-  document.querySelectorAll(".static-close").forEach((button) => {
-    button.addEventListener("click", () => closeDialog(button.closest(".static-dialog")));
-  });
-  document.querySelectorAll(".static-dialog").forEach((backdrop) => {
-    backdrop.addEventListener("mousedown", (event) => {
-      if (event.target === backdrop) closeDialog(backdrop);
-    });
-  });
-  galleryDialog.querySelector(".gallery-prev").addEventListener("click", () => moveGallery(-1));
-  galleryDialog.querySelector(".gallery-next").addEventListener("click", () => moveGallery(1));
-  galleryDialog.addEventListener("touchstart", (event) => {
-    touchStartX = event.touches[0] ? event.touches[0].clientX : null;
-  }, { passive: true });
-  galleryDialog.addEventListener("touchend", (event) => {
-    if (touchStartX === null) return;
-    const endX = event.changedTouches[0] ? event.changedTouches[0].clientX : touchStartX;
-    if (Math.abs(endX - touchStartX) > 50) moveGallery(endX > touchStartX ? -1 : 1);
-    touchStartX = null;
-  }, { passive: true });
-  document.addEventListener("keydown", (event) => {
-    const openDialog = document.querySelector(".static-dialog:not([hidden])");
-    if (!openDialog) return;
-    if (event.key === "Escape") closeDialog(openDialog);
-    if (openDialog === galleryDialog && event.key === "ArrowLeft") moveGallery(-1);
-    if (openDialog === galleryDialog && event.key === "ArrowRight") moveGallery(1);
-  });
-
   const dday = document.querySelector(".dday");
   const target = new Date(dday.dataset.weddingDate);
   let countdownKey = "";
@@ -245,8 +135,7 @@ const script = `
 </script>`;
 
 html = html
-  .replace("</head>", `${extraStyles}</head>`)
-  .replace("</body>", `${dialogs}${script}</body>`)
+  .replace("</body>", `${script}</body>`)
   .replaceAll("./images/", `${imageOrigin || "."}/images/`);
 
 await rm(outputDir, { recursive: true, force: true });

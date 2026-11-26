@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>곽재현 ♥ 정연수, 결혼합니다</title><meta name="description" content="2027년 2월 14일 일요일 오후 12시 30분 · 드레스가든"/><meta name="robots" content="noindex, nofollow"/><meta property="og:title" content="곽재현 ♥ 정연수, 결혼합니다"/><meta property="og:description" content="2027년 2월 14일 일요일 오후 12시 30분 · 드레스가든"/><meta property="og:type" content="website"/><meta property="og:locale" content="ko_KR"/><meta property="og:image" content="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/og.png?v=bw-collage-original-20261001"/><meta property="og:image:width" content="801"/><meta property="og:image:height" content="586"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="곽재현 ♥ 정연수, 결혼합니다"/><meta name="twitter:description" content="2027년 2월 14일 일요일 오후 12시 30분 · 드레스가든"/><meta name="twitter:image" content="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/og.png?v=bw-collage-original-20261001"/><meta name="theme-color" content="#f8f5ef"/>
-<link rel="preconnect" href="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site"><style>:root {
+<style>:root {
   --paper: #f8f5ef;
   --paper-deep: #eee9df;
   --ink: #302f2b;
@@ -898,7 +898,6 @@ footer button {
     transition-duration: 0.01ms !important;
   }
 }
-
 @font-face {
   font-family: "Cormorant Garamond";
   src: url("./fonts/CormorantGaramond.woff2") format("woff2");
@@ -1051,12 +1050,13 @@ body { font-family: var(--serif); }
 #invitation { padding-top: 80px; padding-bottom: 56px; text-align: center; }
 .invitation-copy { margin-top: 32px; }
 .invitation-copy p { font: 16px/2.2 "Gowun Batang", "AppleMyungjo", "Batang", serif; color: var(--ink); margin-bottom: 26px; letter-spacing: -.025em; }
-.invitation-flower { display: block; width: 136px; transform: rotate(30deg); height: auto; margin: 22px auto 0; mix-blend-mode: multiply; }
-.family { margin-top: 44px; padding: 0; border: 0; }
+.invitation-flower { display: block; width: 108.8px; transform: rotate(30deg); height: auto; margin: 22px auto 0; mix-blend-mode: multiply; }
+.family { display: grid; grid-template-columns: repeat(3, max-content); justify-content: center; column-gap: 0; margin-top: 44px; padding: 0; border: 0; }
 
-.family-line { justify-content: center; flex-wrap: wrap; font-size: 14px; gap: 5px; }
-.family-line strong { font-size: 16px; font-weight: 400; }
-.relation { font-size: 14px; }
+.family-line { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; column-gap: inherit; text-align: left; font-size: 14px; }
+.family-line strong { grid-column: 3; margin-left: 12px; font-size: 16px; font-weight: 400; }
+.parent-separator { margin-inline: 4px; }
+.relation { margin-inline-start: 4px; font-size: 14px; }
 
 #date {
   margin-inline: 0;
@@ -1119,13 +1119,44 @@ body { font-family: var(--serif); }
 
 #gallery { padding: 76px 32px 64px; text-align: center; }
 #gallery h2 { font: 26px/1.4 var(--calendar); letter-spacing: .18em; color: #785451; }
-.gallery-strip { display: flex; margin-top: 28px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; box-shadow: 0 3px 12px #42382e12; }
+.gallery-pick { position: absolute; inset: 0; border: 0; background: transparent; cursor: pointer; }
+.gallery-pick:focus-visible { outline: 2px solid var(--ink); outline-offset: -3px; }
+.gallery-back { display: block; margin: 8px auto 0; padding: 8px; border: 0; background: transparent; color: var(--muted); font: inherit; text-decoration: underline; cursor: pointer; }
+.gallery-frame[data-single] .gallery-pick { display: none; }
+#gallery:has(.gallery-frame:not([data-single])) {
+  .gallery-frame::after, .gallery-navigation, .gallery-back { display: none; }
+  .gallery-strip { display: block; position: relative; aspect-ratio: 100 / 141; overflow: visible; scroll-snap-type: none; box-shadow: none; }
+  .gallery-slide { position: absolute; left: var(--x); top: var(--y); width: var(--w); transform: translate(-50%, -50%) rotate(var(--tilt)); box-shadow: 1px 3px 6px #43372838; }
+  .gallery-slide { box-sizing: border-box; background: #fffdf8; padding: 3px; }
+  .gallery-slide:nth-child(1) { --x: 17%; --y: 14.18%; --w: 26%; --tilt: -15deg; }
+  .gallery-slide:nth-child(2) { --x: 48%; --y: 17.02%; --w: 30%; --tilt: 9deg; }
+  .gallery-slide:nth-child(3) { --x: 78%; --y: 14.18%; --w: 22%; --tilt: -6deg; }
+  .gallery-slide:nth-child(4) { --x: 83.5%; --y: 38.5%; --w: 27%; --tilt: 8deg; }
+  .gallery-slide:nth-child(5) { --x: 22%; --y: 39.01%; --w: 31%; --tilt: 8deg; }
+  .gallery-slide:nth-child(6) { --x: 55%; --y: 40.43%; --w: 26%; --tilt: -18deg; }
+  .gallery-slide:nth-child(7) { --x: 12%; --y: 59.57%; --w: 22%; --tilt: -11deg; }
+  .gallery-slide:nth-child(8) { --x: 37%; --y: 62.41%; --w: 25%; --tilt: 16deg; }
+  .gallery-slide:nth-child(9) { --x: 72%; --y: 59.57%; --w: 31%; --tilt: -7deg; }
+  .gallery-slide:nth-child(10) { --x: 16%; --y: 82.98%; --w: 24%; --tilt: 11deg; }
+  .gallery-slide:nth-child(11) { --x: 45%; --y: 85.82%; --w: 21%; --tilt: -9deg; }
+  .gallery-slide:nth-child(12) { --x: 67%; --y: 80.85%; --w: 24%; --tilt: 14deg; }
+  .gallery-slide:nth-child(13) { --x: 84%; --y: 87.23%; --w: 22%; --tilt: -12deg; }
+}
+.gallery-strip { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; box-shadow: 0 3px 12px #42382e12; }
 .gallery-strip::-webkit-scrollbar { display: none; }
 .gallery-strip:focus-visible { outline: 2px solid var(--sage-dark); outline-offset: 3px; }
-.gallery-slide { flex: 0 0 100%; min-width: 0; aspect-ratio: 2 / 3; scroll-snap-align: start; padding: 8px 8px 16px; background: #faf7f0; }
-.gallery-slide:focus-visible { outline-offset: -3px; }
+.gallery-slide { flex: 0 0 100%; min-width: 0; aspect-ratio: 2 / 3; scroll-snap-align: start; padding: 0; }
+.gallery-frame { position: relative; margin-top: 28px; }
+.gallery-frame::after {
+  content: ""; position: absolute; z-index: 1; width: 82px; height: 34px;
+  background: url("./art/gallery-lace-edge.webp") center / auto 100% repeat-x;
+  pointer-events: none; filter: drop-shadow(0 1px 1px #46352038);
+}
+.gallery-frame::after { bottom: -12px; right: -32px; transform: rotate(-41deg); }
+.gallery-slide { cursor: default; }
+.gallery-strip, .closing img, .lace-portrait { touch-action: pan-x pan-y; }
 .gallery-slide:hover img { transform: none; }
-.gallery-slide img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.gallery-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .gallery-navigation { display: flex; align-items: center; justify-content: center; gap: 28px; margin-top: 18px; padding-top: 0; border: 0; }
 .gallery-step { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; color: #785451; cursor: pointer; }
 .gallery-step span { position: relative; display: block; width: 18px; height: 1px; background: currentColor; }
@@ -1176,7 +1207,7 @@ body { font-family: var(--serif); }
 .account-bank { color: var(--muted); font: 13px/1.6 var(--serif); }
 .account-row strong { font: 15px/1.6 var(--latin); overflow-wrap: anywhere; }
 .account-row .text-button { flex-shrink: 0; min-width: 44px; min-height: 44px; padding: 8px 4px; font: 12px/1.8 var(--serif); border: 0; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 5px; }
-.closing { width: calc(100% - 64px); margin: 0 auto; min-height: 0; height: auto; border: 8px solid #faf7f0; box-shadow: 0 3px 12px #42382e12; background: transparent; }
+.closing { width: calc(100% - 64px); margin: 0 auto; min-height: 0; height: auto; border: 0; box-shadow: 0 3px 12px #42382e12; background: transparent; }
 .closing img { display: block; position: static; width: 100%; height: auto; object-fit: contain; }
 footer { padding: 32px 20px calc(48px + env(safe-area-inset-bottom)); }
 footer button { min-height: 44px; padding: 8px 16px; font: 13px/1.8 var(--serif); color: #785451; border-bottom-color: #845c5960; letter-spacing: .06em; }
@@ -1185,7 +1216,6 @@ footer > span { display: none; }
 @media (max-width: 370px) {
   .section, #gallery { padding-inline: 24px; }
   #date { margin-inline: 0; padding-inline: 12px; }
-  .family-line { font-size: 14px; gap: 3px; }
   .family-line strong { font-size: 16px; }
   .closing { width: calc(100% - 48px); }
 }
@@ -1272,33 +1302,17 @@ html.envelope-active, html.envelope-active body { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .envelope-intro * { transition: none; }
 }
-</style>
-<style>
+
 .static-dialog[hidden]{display:none}
 .static-dialog .dialog{position:relative}
 .static-gallery-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:54px 16px 70px}
-</style></head><body><div class="envelope-intro" data-envelope="" hidden=""><button class="envelope-trigger" data-envelope-open="" type="button" aria-label="봉투를 열어 청첩장 보기"><span class="envelope-fold" aria-hidden="true"><span class="envelope-leaf envelope-left"></span><span class="envelope-leaf envelope-right"></span><span class="envelope-cartouche"></span></span></button></div><main class="invitation-shell"><section class="cover" aria-labelledby="cover-title"><div class="lace-portrait"><div class="lace-portrait-opening"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0100.webp" alt="정연수와 곽재현의 웨딩 사진" width="3729" height="5593" loading="eager" fetchPriority="high" decoding="async" class="lace-portrait-photo" data-nimg="1"/></div></div><div class="stamp-heading"><p><span class="cover-typing">THE WEDDING OF</span></p><h1 id="cover-title" tabindex="-1">정연수<i>&amp;</i>곽재현</h1><p class="stamp-date">FEBRUARY<!-- --> <!-- -->14<!-- -->, <!-- -->2027<br/>PM 12:30</p></div></section><section class="section reveal" id="invitation"><h2>초대합니다</h2><div class="section-rule" aria-hidden="true"></div><div class="invitation-copy"><p>첫 만남엔 선후배로,
+</style></head><body><div class="envelope-intro" data-envelope="" hidden=""><button class="envelope-trigger" data-envelope-open="" type="button" aria-label="봉투를 열어 청첩장 보기"><span class="envelope-fold" aria-hidden="true"><span class="envelope-leaf envelope-left"></span><span class="envelope-leaf envelope-right"></span><span class="envelope-cartouche"></span></span></button></div><main class="invitation-shell"><section class="cover" aria-labelledby="cover-title"><div class="lace-portrait"><div class="lace-portrait-opening"><img class="lace-portrait-photo" alt="정연수와 곽재현의 웨딩 사진" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0100.webp" width="3729" height="5593" loading="eager" fetchPriority="high"/></div></div><div class="stamp-heading"><p><span class="cover-typing">THE WEDDING OF</span></p><h1 id="cover-title" tabindex="-1">정연수<i>&amp;</i>곽재현</h1><p class="stamp-date">FEBRUARY 14, 2027<br/>PM 12:30</p></div></section><section class="section reveal" id="invitation"><h2>초대합니다</h2><div class="section-rule" aria-hidden="true"></div><div class="invitation-copy"><p>첫 만남엔 선후배로,
 두 번째 만남엔 친구로,
 그 후에는 연인으로 10년을 만났습니다.
 
 이제는 부부로 인생을 함께하려 합니다.
 저희의 시작을 축하해 주신다면
-더할 나위 없이 기쁜 하루가 될 것입니다.</p></div><img src="./art/chamomile-pencil.png" alt="" width="136" height="136" loading="lazy" decoding="async" class="invitation-flower" data-nimg="1"/><div class="family"><p class="family-line"><span><span>정재현</span><span> · <!-- -->이상희</span></span><span class="relation">의 <!-- -->딸</span><strong>정연수</strong></p><p class="family-line"><span><span>곽원영</span><span> · <!-- -->전영란</span></span><span class="relation">의 <!-- -->아들</span><strong>곽재현</strong></p></div></section><section class="section reveal" id="date"><p class="section-eyebrow">THE DAY</p><h2>예식 일시</h2><div class="section-rule" aria-hidden="true"></div><div class="calendar" aria-label="2027년 2월 달력"><p class="calendar-year">2027</p><p class="calendar-month">February</p><div class="calendar-grid calendar-weekdays"><span class="sunday">Sun</span><span class="">Mon</span><span class="">Tue</span><span class="">Wed</span><span class="">Thu</span><span class="">Fri</span><span class="">Sat</span></div><div class="calendar-grid calendar-dates"><span class="sunday  "></span><span class="  ">1</span><span class="  ">2</span><span class="  ">3</span><span class="  ">4</span><span class="  ">5</span><span class=" seollal-day " aria-label="2월 6일 설 연휴">6</span><span class="sunday seollal-day " aria-label="2월 7일 설 연휴">7<small class="holiday-label" aria-hidden="true">설연휴</small></span><span class=" seollal-day " aria-label="2월 8일 설 연휴">8</span><span class=" seollal-day " aria-label="2월 9일 설날 대체공휴일">9</span><span class="  ">10</span><span class="  ">11</span><span class="  ">12</span><span class="  ">13</span><span class="sunday  wedding-day" aria-label="2월 14일 결혼식">14</span><span class="  ">15</span><span class="  ">16</span><span class="  ">17</span><span class="  ">18</span><span class="  ">19</span><span class="  ">20</span><span class="sunday  ">21</span><span class="  ">22</span><span class="  ">23</span><span class="  ">24</span><span class="  ">25</span><span class="  ">26</span><span class="  ">27</span><span class="sunday  ">28</span></div></div><p class="date-display">2027.02.14</p><p class="time-display">일요일 낮 12시 30분</p><p class="dday" data-wedding-date="2027-02-14T03:30:00.000Z">연수, 재현의 결혼식이 <strong>--</strong>일 남았습니다.</p></section><section class="section reveal" id="gallery"><h2>GALLERY</h2><div class="section-rule" aria-hidden="true"></div><div class="gallery-strip" role="region" aria-label="웨딩 사진 목록" tabindex="0"><button class="gallery-item gallery-slide" aria-label="웨딩 사진 1 / 15 크게 보기" data-gallery-index="0"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0100.webp" alt="곽재현과 정연수의 웨딩 사진 1" width="3729" height="5593" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 2 / 15 크게 보기" data-gallery-index="1"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0177.webp" alt="곽재현과 정연수의 웨딩 사진 2" width="3917" height="5875" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 3 / 15 크게 보기" data-gallery-index="2"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0316.webp" alt="곽재현과 정연수의 웨딩 사진 3" width="3917" height="5875" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 4 / 15 크게 보기" data-gallery-index="3"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0392.webp" alt="곽재현과 정연수의 웨딩 사진 4" width="3917" height="5875" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 5 / 15 크게 보기" data-gallery-index="4"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0463.webp" alt="곽재현과 정연수의 웨딩 사진 5" width="3815" height="5722" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 6 / 15 크게 보기" data-gallery-index="5"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0644.webp" alt="곽재현과 정연수의 웨딩 사진 6" width="4000" height="6000" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 7 / 15 크게 보기" data-gallery-index="6"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0807.webp" alt="곽재현과 정연수의 웨딩 사진 7" width="3905" height="5857" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 8 / 15 크게 보기" data-gallery-index="7"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0922.webp" alt="곽재현과 정연수의 웨딩 사진 8" width="3812" height="5717" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 9 / 15 크게 보기" data-gallery-index="8"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1133.webp" alt="곽재현과 정연수의 웨딩 사진 9" width="3890" height="5835" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 10 / 15 크게 보기" data-gallery-index="9"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1186.webp" alt="곽재현과 정연수의 웨딩 사진 10" width="3917" height="5875" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 11 / 15 크게 보기" data-gallery-index="10"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1330.webp" alt="곽재현과 정연수의 웨딩 사진 11" width="6000" height="4000" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 12 / 15 크게 보기" data-gallery-index="11"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1420.webp" alt="곽재현과 정연수의 웨딩 사진 12" width="6000" height="4000" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 13 / 15 크게 보기" data-gallery-index="12"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1439.webp" alt="곽재현과 정연수의 웨딩 사진 13" width="3930" height="5895" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 14 / 15 크게 보기" data-gallery-index="13"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1471.webp" alt="곽재현과 정연수의 웨딩 사진 14" width="3905" height="5857" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button><button class="gallery-item gallery-slide" aria-label="웨딩 사진 15 / 15 크게 보기" data-gallery-index="14"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1499.webp" alt="곽재현과 정연수의 웨딩 사진 15" width="3870" height="5805" loading="lazy" decoding="async" sizes="(max-width: 480px) 84vw, 416px" data-nimg="1"/></button></div><div class="gallery-navigation"><button class="gallery-step" data-direction="-1" aria-label="이전 사진 보기"><span aria-hidden="true"></span></button><p class="gallery-position" aria-live="polite" aria-atomic="true"><span>01</span><i aria-hidden="true">/</i>15</p><button class="gallery-step" data-direction="1" aria-label="다음 사진 보기"><span aria-hidden="true"></span></button></div></section><section class="section reveal" id="location"><h2>오시는 길</h2><div class="section-rule" aria-hidden="true"></div><div class="venue-card"><p class="venue-name">드레스가든</p><address>서울특별시 강남구 영동대로 707</address></div><svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><defs><filter id="venue-map-ink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.7 0 0 0 0  0 0.7 0 0 0  0 0 0.7 0 0  -0.85 -2.86 -0.29 0 3.4"></feColorMatrix><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><figure class="venue-map-figure"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/location/dressgarden-route-sidewalk.e3228be3.webp" alt="청담역 13번 출구에서 드레스가든으로 가는 길을 붉은 화살표로 표시한 약도" width="1540" height="1021" loading="lazy" decoding="async" class="venue-map" data-nimg="1"/></figure><a class="map-view-button" href="https://naver.me/55rmbsR7" rel="noreferrer" target="_blank">지도에서 위치 보기</a><div class="transport-list"><div class="transport-row"><strong>지하철</strong><p>7호선 청담역 13번 출구에서 도보 1분</p></div><div class="transport-row"><strong>주차 안내</strong><p>웨딩홀 주차장 이용 - 2시간 무료</p></div></div></section><section class="section reveal" id="accounts"><h2>마음 전하실 곳</h2><div class="section-rule" aria-hidden="true"></div><div class="account-disclosures"><div class="account-disclosure"><button class="account-trigger" aria-expanded="false" aria-controls="groom-accounts">신랑측 계좌</button><div id="groom-accounts" data-account-side="groom" hidden=""><div class="account-group" aria-label="신랑측 계좌번호"><div class="account-list"><div class="account-row"><span class="account-info"><small>신랑<!-- --> · <!-- -->곽재현</small><span class="account-bank">신한은행</span><strong>110-000-000000</strong></span><button class="text-button" aria-label="곽재현 신한은행 계좌번호 복사">복사</button></div><div class="account-row"><span class="account-info"><small>아버지<!-- --> · <!-- -->곽원영</small><span class="account-bank">우리은행</span><strong>1002-000-000000</strong></span><button class="text-button" aria-label="곽원영 우리은행 계좌번호 복사">복사</button></div></div></div></div></div><div class="account-disclosure"><button class="account-trigger" aria-expanded="false" aria-controls="bride-accounts">신부측 계좌</button><div id="bride-accounts" data-account-side="bride" hidden=""><div class="account-group" aria-label="신부측 계좌번호"><div class="account-list"><div class="account-row"><span class="account-info"><small>신부<!-- --> · <!-- -->정연수</small><span class="account-bank">하나은행</span><strong>750-910180-03707</strong></span><button class="text-button" aria-label="정연수 하나은행 계좌번호 복사">복사</button></div></div></div></div></div></div></section><section class="closing"><img src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/closing-collage.71aa885f.webp" alt="연수와 재현의 웨딩 사진과 추억을 담은 콜라주" width="801" height="586" loading="lazy" decoding="async" sizes="(max-width: 480px) 88vw, 424px" data-nimg="1"/></section><footer><button>청첩장 공유하기</button><span>곽재현<!-- --> &amp; <!-- -->정연수<!-- -->의 결혼식</span></footer></main><div aria-atomic="true" aria-live="polite" class="toast " role="status"></div>
-<div class="dialog-backdrop static-dialog" id="gallery-dialog" hidden>
-  <div class="dialog gallery-dialog" role="dialog" aria-modal="true" aria-labelledby="gallery-title" tabindex="-1">
-    <div class="dialog-heading">
-      <h2 id="gallery-title">사진 크게 보기</h2>
-      <button class="icon-button static-close" aria-label="사진 크게 보기 닫기">×</button>
-    </div>
-    <div class="gallery-viewer">
-      <img class="static-gallery-image" alt="">
-      <button class="gallery-prev" aria-label="이전 사진">‹</button>
-      <button class="gallery-next" aria-label="다음 사진">›</button>
-      <span class="gallery-count"></span>
-    </div>
-  </div>
-</div>
-<script>
+더할 나위 없이 기쁜 하루가 될 것입니다.</p></div><img class="invitation-flower" src="./art/wildflower-posy.webp" alt="" width="136" height="164"/><div class="family"><p class="family-line"><span><span>정재현</span><span><span class="parent-separator">·</span>이상희</span></span><span class="relation">의 딸</span><strong>정연수</strong></p><p class="family-line"><span><span>곽원영</span><span><span class="parent-separator">·</span>전영란</span></span><span class="relation">의 아들</span><strong>곽재현</strong></p></div></section><section class="section reveal" id="date"><p class="section-eyebrow">THE DAY</p><h2>예식 일시</h2><div class="section-rule" aria-hidden="true"></div><div class="calendar" aria-label="2027년 2월 달력"><p class="calendar-year">2027</p><p class="calendar-month">February</p><div class="calendar-grid calendar-weekdays"><span class="sunday">Sun</span><span class="">Mon</span><span class="">Tue</span><span class="">Wed</span><span class="">Thu</span><span class="">Fri</span><span class="">Sat</span></div><div class="calendar-grid calendar-dates"><span class="sunday  "></span><span class="  ">1</span><span class="  ">2</span><span class="  ">3</span><span class="  ">4</span><span class="  ">5</span><span class=" seollal-day " aria-label="2월 6일 설 연휴">6</span><span class="sunday seollal-day " aria-label="2월 7일 설 연휴">7<small class="holiday-label" aria-hidden="true">설연휴</small></span><span class=" seollal-day " aria-label="2월 8일 설 연휴">8</span><span class=" seollal-day " aria-label="2월 9일 설날 대체공휴일">9</span><span class="  ">10</span><span class="  ">11</span><span class="  ">12</span><span class="  ">13</span><span class="sunday  wedding-day" aria-label="2월 14일 결혼식">14</span><span class="  ">15</span><span class="  ">16</span><span class="  ">17</span><span class="  ">18</span><span class="  ">19</span><span class="  ">20</span><span class="sunday  ">21</span><span class="  ">22</span><span class="  ">23</span><span class="  ">24</span><span class="  ">25</span><span class="  ">26</span><span class="  ">27</span><span class="sunday  ">28</span></div></div><p class="date-display">2027.02.14</p><p class="time-display">일요일 낮 12시 30분</p><p class="dday" data-wedding-date="2027-02-14T03:30:00.000Z">연수, 재현의 결혼식이 <strong>--</strong>일 남았습니다.</p></section><section class="section reveal" id="gallery"><h2>GALLERY</h2><div class="section-rule" aria-hidden="true"></div><div class="gallery-frame"><div class="gallery-strip" role="region" aria-label="웨딩 사진 목록" tabindex="0"><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 1" width="3729" height="5593" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0100.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 1 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 2" width="3917" height="5875" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0177.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 2 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 3" width="3917" height="5875" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0316.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 3 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 4" width="3917" height="5875" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0392.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 4 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 5" width="3815" height="5722" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0463.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 5 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 6" width="4000" height="6000" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0644.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 6 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 7" width="3905" height="5857" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0807.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 7 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 8" width="3812" height="5717" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/0922.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 8 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 9" width="3890" height="5835" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1133.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 9 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 10" width="3917" height="5875" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1186.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 10 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 11" width="3930" height="5895" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1439.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 11 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 12" width="3905" height="5857" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1471.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 12 한 장 보기"></button></div><div class="gallery-item gallery-slide"><img alt="곽재현과 정연수의 웨딩 사진 13" width="3870" height="5805" sizes="(max-width: 480px) 84vw, 416px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/1499.webp"/><button type="button" class="gallery-pick" aria-label="곽재현과 정연수의 웨딩 사진 13 한 장 보기"></button></div></div></div><div class="gallery-navigation"><button class="gallery-step" data-direction="-1" aria-label="이전 사진 보기"><span aria-hidden="true"></span></button><p class="gallery-position" aria-live="polite" aria-atomic="true"><span>01</span><i aria-hidden="true">/</i>13</p><button class="gallery-step" data-direction="1" aria-label="다음 사진 보기"><span aria-hidden="true"></span></button></div><button type="button" class="gallery-back" aria-label="뒤로, 사진 전체 보기로 돌아가기">뒤로</button></section><section class="section reveal" id="location"><h2>오시는 길</h2><div class="section-rule" aria-hidden="true"></div><div class="venue-card"><p class="venue-name">드레스가든</p><address>서울특별시 강남구 영동대로 707</address></div><svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><defs><filter id="venue-map-ink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.7 0 0 0 0  0 0.7 0 0 0  0 0 0.7 0 0  -0.85 -2.86 -0.29 0 3.4"></feColorMatrix><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><figure class="venue-map-figure"><img class="venue-map" alt="청담역 13번 출구에서 드레스가든으로 가는 길을 붉은 화살표로 표시한 약도" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/location/dressgarden-route-sidewalk.e3228be3.webp" width="1540" height="1021"/></figure><a class="map-view-button" href="https://naver.me/55rmbsR7" rel="noreferrer" target="_blank">지도에서 위치 보기</a><div class="transport-list"><div class="transport-row"><strong>지하철</strong><p>7호선 청담역 13번 출구에서 도보 1분</p></div><div class="transport-row"><strong>주차 안내</strong><p>웨딩홀 주차장 이용 - 2시간 무료</p></div></div></section><section class="section reveal" id="accounts"><h2>마음 전하실 곳</h2><div class="section-rule" aria-hidden="true"></div><div class="account-disclosures"><div class="account-disclosure"><button class="account-trigger" aria-expanded="false" aria-controls="groom-accounts">신랑측 계좌</button><div id="groom-accounts" data-account-side="groom" hidden=""><div class="account-group" aria-label="신랑측 계좌번호"><div class="account-list"><div class="account-row"><span class="account-info"><small>신랑 · 곽재현</small><span class="account-bank">신한은행</span><strong>110-000-000000</strong></span><button class="text-button" aria-label="곽재현 신한은행 계좌번호 복사">복사</button></div><div class="account-row"><span class="account-info"><small>아버지 · 곽원영</small><span class="account-bank">우리은행</span><strong>1002-000-000000</strong></span><button class="text-button" aria-label="곽원영 우리은행 계좌번호 복사">복사</button></div></div></div></div></div><div class="account-disclosure"><button class="account-trigger" aria-expanded="false" aria-controls="bride-accounts">신부측 계좌</button><div id="bride-accounts" data-account-side="bride" hidden=""><div class="account-group" aria-label="신부측 계좌번호"><div class="account-list"><div class="account-row"><span class="account-info"><small>신부 · 정연수</small><span class="account-bank">하나은행</span><strong>750-910180-03707</strong></span><button class="text-button" aria-label="정연수 하나은행 계좌번호 복사">복사</button></div></div></div></div></div></div></section><section class="closing"><img alt="연수와 재현의 웨딩 사진과 추억을 담은 콜라주" width="801" height="586" sizes="(max-width: 480px) 88vw, 424px" src="https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/closing-collage.71aa885f.webp"/></section><footer><button>청첩장 공유하기</button><span>곽재현 &amp; 정연수의 결혼식</span></footer></main><div aria-atomic="true" aria-live="polite" class="toast " role="status"></div><script>
 (() => {
   function setupCoverScroll() {
     const invitation = document.getElementById("invitation");
@@ -1414,15 +1428,7 @@ html.envelope-active, html.envelope-active body { overflow: hidden; }
 
   setupCoverScroll();
   setupEnvelopeIntro();
-  const gallery = ["0100","0177","0316","0392","0463","0644","0807","0922","1133","1186","1330","1420","1439","1471","1499"];
-  let galleryIndex = 0;
-  let touchStartX = null;
-  let previousFocus = null;
   const toast = document.querySelector(".toast");
-  const galleryDialog = document.querySelector("#gallery-dialog");
-  const galleryImage = galleryDialog.querySelector(".static-gallery-image");
-  const galleryCount = galleryDialog.querySelector(".gallery-count");
-
   function showToast(message) {
     toast.textContent = message;
     toast.classList.add("show");
@@ -1450,57 +1456,48 @@ html.envelope-active, html.envelope-active body { overflow: hidden; }
     }
   }
 
-  function openDialog(dialog) {
-    previousFocus = document.activeElement;
-    dialog.hidden = false;
-    document.body.classList.add("modal-open");
-    dialog.querySelector(".dialog").focus();
-  }
-
-  function closeDialog(dialog) {
-    dialog.hidden = true;
-    document.body.classList.remove("modal-open");
-    if (previousFocus) previousFocus.focus({ preventScroll: true });
-  }
-
-  function renderGallery() {
-    galleryImage.src = "https://warm-wedding-invitation-2027.jhhj4llm.chatgpt.site/images/wedding/" + gallery[galleryIndex] + ".webp";
-    galleryImage.alt = "곽재현과 정연수의 웨딩 사진 " + (galleryIndex + 1);
-    galleryCount.textContent = (galleryIndex + 1) + " / " + gallery.length;
-  }
-
-  function moveGallery(direction) {
-    galleryIndex = (galleryIndex + direction + gallery.length) % gallery.length;
-    renderGallery();
-  }
-
-  const galleryStrip = document.querySelector(".gallery-strip");
-  const galleryPosition = document.querySelector(".gallery-position span");
-  let visibleSlide = 0;
-  galleryStrip.addEventListener("scroll", () => {
-    const index = Math.max(0, Math.min(gallery.length - 1, Math.round(galleryStrip.scrollLeft / galleryStrip.clientWidth)));
-    if (index === visibleSlide) return;
-    visibleSlide = index;
-    galleryPosition.textContent = String(index + 1).padStart(2, "0");
-  }, { passive: true });
-  document.querySelectorAll(".gallery-step").forEach((button) => {
-    button.addEventListener("click", () => {
-      const index = Math.round(galleryStrip.scrollLeft / galleryStrip.clientWidth);
-      const direction = Number(button.dataset.direction);
-      const next = (index + direction + gallery.length) % gallery.length;
-      const wraps = index + direction < 0 || index + direction >= gallery.length;
-      galleryStrip.scrollTo({ left: next * galleryStrip.clientWidth, behavior: wraps || window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+function setupGallery() {
+    const section = document.getElementById("gallery");
+    const frame = section?.querySelector(".gallery-frame");
+    const strip = section?.querySelector(".gallery-strip");
+    const counter = section?.querySelector(".gallery-position span");
+    const back = section?.querySelector(".gallery-back");
+    if (!section || !frame || !strip || !counter || !back)
+        return;
+    const picks = Array.from(strip.querySelectorAll(".gallery-pick"));
+    const controller = new AbortController();
+    const options = { signal: controller.signal };
+    const current = () => Math.max(0, Math.min(picks.length - 1, Math.round(strip.scrollLeft / strip.clientWidth)));
+    const showCount = (index) => { counter.textContent = String(index + 1).padStart(2, "0"); };
+    picks.forEach((pick, index) => pick.addEventListener("click", () => {
+        frame.dataset.single = "";
+        strip.scrollTo({ left: index * strip.clientWidth, behavior: "instant" });
+        showCount(index);
+        frame.scrollIntoView({ block: "nearest", behavior: "instant" });
+        strip.focus({ preventScroll: true });
+    }, options));
+    strip.addEventListener("scroll", () => {
+        if (frame.hasAttribute("data-single"))
+            showCount(current());
+    }, options);
+    section.querySelectorAll(".gallery-step").forEach(button => {
+        button.addEventListener("click", () => {
+            const target = current() + Number(button.dataset.direction);
+            const next = (target + picks.length) % picks.length;
+            const instant = target !== next || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            strip.scrollTo({ left: next * strip.clientWidth, behavior: instant ? "instant" : "smooth" });
+        }, options);
     });
-  });
+    back.addEventListener("click", () => {
+        const pick = picks[current()];
+        delete frame.dataset.single;
+        pick.focus({ preventScroll: true });
+        pick.scrollIntoView({ block: "nearest", behavior: "instant" });
+    }, options);
+    return () => controller.abort();
+}
 
-  document.querySelectorAll(".gallery-item").forEach((button, index) => {
-    button.addEventListener("click", () => {
-      galleryIndex = Number(button.dataset.galleryIndex ?? index);
-      renderGallery();
-      openDialog(galleryDialog);
-    });
-  });
-
+  setupGallery();
   document.querySelectorAll("button").forEach((button) => {
     const text = button.textContent.trim();
     if (text.endsWith("공유하기")) {
@@ -1536,33 +1533,6 @@ html.envelope-active, html.envelope-active body { overflow: hidden; }
     row.querySelector("button").addEventListener("click", () => {
       copyText(row.querySelector("strong").textContent.trim(), "계좌번호가 복사되었습니다.");
     });
-  });
-
-  document.querySelectorAll(".static-close").forEach((button) => {
-    button.addEventListener("click", () => closeDialog(button.closest(".static-dialog")));
-  });
-  document.querySelectorAll(".static-dialog").forEach((backdrop) => {
-    backdrop.addEventListener("mousedown", (event) => {
-      if (event.target === backdrop) closeDialog(backdrop);
-    });
-  });
-  galleryDialog.querySelector(".gallery-prev").addEventListener("click", () => moveGallery(-1));
-  galleryDialog.querySelector(".gallery-next").addEventListener("click", () => moveGallery(1));
-  galleryDialog.addEventListener("touchstart", (event) => {
-    touchStartX = event.touches[0] ? event.touches[0].clientX : null;
-  }, { passive: true });
-  galleryDialog.addEventListener("touchend", (event) => {
-    if (touchStartX === null) return;
-    const endX = event.changedTouches[0] ? event.changedTouches[0].clientX : touchStartX;
-    if (Math.abs(endX - touchStartX) > 50) moveGallery(endX > touchStartX ? -1 : 1);
-    touchStartX = null;
-  }, { passive: true });
-  document.addEventListener("keydown", (event) => {
-    const openDialog = document.querySelector(".static-dialog:not([hidden])");
-    if (!openDialog) return;
-    if (event.key === "Escape") closeDialog(openDialog);
-    if (openDialog === galleryDialog && event.key === "ArrowLeft") moveGallery(-1);
-    if (openDialog === galleryDialog && event.key === "ArrowRight") moveGallery(1);
   });
 
   const dday = document.querySelector(".dday");
